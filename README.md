@@ -20,6 +20,10 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+## Deploy on Vercel
+
+See **[docs/DEPLOY-VERCEL.md](docs/DEPLOY-VERCEL.md)**. Use the **project** URL from the Vercel dashboard (not the bare team subdomain). Set `NEXT_PUBLIC_SITE_URL` to that URL.
+
 ## Adding a property
 
 1. Add a record to `src/content/properties/properties.ts`
