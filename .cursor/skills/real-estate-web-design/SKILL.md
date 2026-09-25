@@ -189,13 +189,3 @@ EDITORIAL.
 PREMIUM.
 RESTRAINED.
 INTENTIONAL.
-
-## Application
-
-When implementing UI:
-
-1. Establish typography scale and spacing rhythm before adding components.
-2. Lead with photography placement and crop; build layout around imagery.
-3. Choose one strong composition pattern per section; avoid repeating the same grid.
-4. Strip decorative UI until the property and copy carry the page.
-5. Run the quality test above before marking work complete.
