@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/layout/Section";
-import { TextLink } from "@/components/ui/TextLink";
+import { buildWhatsAppUrl } from "@/lib/contact/whatsapp";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
 const services = [
@@ -47,9 +47,14 @@ export default function ServicesPage() {
             </article>
           ))}
         </div>
-        <TextLink href="/contact" className="mt-12">
-          Discuss a mandate
-        </TextLink>
+        <a
+          href={buildWhatsAppUrl("Hello, I would like to discuss a mandate.")}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="focus-ring mt-12 inline-flex text-sm uppercase tracking-[0.18em] text-accent"
+        >
+          Discuss on WhatsApp
+        </a>
       </Section>
     </>
   );

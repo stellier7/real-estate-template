@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { buildWhatsAppUrl } from "@/lib/contact/whatsapp";
 import { PropertyCard } from "@/components/directory/PropertyCard";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
@@ -110,12 +110,14 @@ export default function HomePage() {
                 introductions.
               </p>
             </div>
-            <Link
-              href="/contact"
+            <a
+              href={buildWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
               className="focus-ring text-sm uppercase tracking-[0.2em] text-background"
             >
-              Contact
-            </Link>
+              WhatsApp
+            </a>
           </div>
         </Container>
       </Section>

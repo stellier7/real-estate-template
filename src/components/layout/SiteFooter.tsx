@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "@/content/site/config";
+import { buildWhatsAppUrl } from "@/lib/contact/whatsapp";
 import { Container } from "./Container";
 
 export function SiteFooter() {
@@ -30,8 +31,13 @@ export function SiteFooter() {
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-muted">Contact</p>
             <p className="mt-4 text-sm text-muted">
-              <a className="focus-ring hover:text-accent" href={`mailto:${siteConfig.contactEmail}`}>
-                {siteConfig.contactEmail}
+              <a
+                className="focus-ring hover:text-accent"
+                href={buildWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp {siteConfig.whatsapp.display}
               </a>
             </p>
             {siteConfig.offices.map((office) => (

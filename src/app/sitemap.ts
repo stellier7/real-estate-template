@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/content/site/config";
 import { propertyRepository } from "@/lib/properties/repository";
 import { absoluteUrl } from "@/lib/seo/metadata";
 

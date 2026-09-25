@@ -28,6 +28,18 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Do **not** create a new page file per property.
 
+## Images
+
+See **[docs/IMAGES.md](docs/IMAGES.md)** for folder layout and how to replace Unsplash URLs with files under `public/images/`.
+
+## Contact (WhatsApp)
+
+Default enquiries go to **+504 9678-4674** via WhatsApp. Update `whatsapp` in `src/content/site/config.ts`.
+
+## CMS later
+
+See **[docs/CMS.md](docs/CMS.md)** for how to swap the local repository for a headless CMS without rewriting the UI.
+
 ## Environment
 
 | Variable | Purpose |

@@ -13,6 +13,7 @@ import {
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { TextLink } from "@/components/ui/TextLink";
+import { buildPropertyWhatsAppUrl } from "@/lib/contact/whatsapp";
 import { PropertyCard } from "@/components/directory/PropertyCard";
 import { PropertyGallery } from "./PropertyGallery";
 import { PropertyHero } from "./PropertyHero";
@@ -85,9 +86,14 @@ export function PropertyPageComposer({ property }: PropertyPageComposerProps) {
             {property.shortDescription ? (
               <p className="prose-editorial mt-6">{property.shortDescription}</p>
             ) : null}
-            <TextLink href="/contact" className="mt-8">
-              {property.contact?.ctaLabel ?? "Enquire about this property"}
-            </TextLink>
+            <a
+              href={buildPropertyWhatsAppUrl(property.name)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus-ring mt-8 inline-flex text-sm uppercase tracking-[0.18em] text-accent"
+            >
+              {property.contact?.ctaLabel ?? "Enquire on WhatsApp"}
+            </a>
           </div>
         </div>
       </Section>
@@ -256,7 +262,14 @@ export function PropertyPageComposer({ property }: PropertyPageComposerProps) {
               supporting materials.
             </p>
           </div>
-          <TextLink href="/contact">Contact</TextLink>
+          <a
+            href={buildPropertyWhatsAppUrl(property.name)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="focus-ring text-sm uppercase tracking-[0.18em] text-accent"
+          >
+            WhatsApp
+          </a>
         </div>
       </Section>
     </>
