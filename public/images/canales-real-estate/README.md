@@ -1,4 +1,4 @@
-# Images — Rony Sorto – Bienes Raíces Comayagua
+# Images — Canales Real Estate
 
 Replace placeholders with owned assets.
 
