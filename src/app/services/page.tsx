@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/layout/Section";
 import { siteConfig } from "@/content/site/config";
+import { isNeedsInput } from "@/content/site/needs-input";
 import { buildWhatsAppUrl, hasWhatsApp } from "@/lib/contact/whatsapp";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
@@ -20,7 +21,9 @@ export default function ServicesPage() {
           {siteConfig.ui.servicesHeading}
         </h1>
         <p className="prose-editorial mt-6 max-w-2xl">
-          {siteConfig.description}
+          {isNeedsInput(siteConfig.description)
+            ? siteConfig.ui.pendingLabel
+            : siteConfig.description}
         </p>
       </Section>
       <Section className="bg-surface">

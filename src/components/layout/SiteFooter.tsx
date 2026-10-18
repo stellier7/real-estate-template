@@ -13,7 +13,9 @@ export function SiteFooter() {
         <div>
           <p className="font-display text-2xl">{siteConfig.name}</p>
           <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">
-            {siteConfig.description}
+            {isNeedsInput(siteConfig.description)
+              ? siteConfig.ui.pendingLabel
+              : siteConfig.description}
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">

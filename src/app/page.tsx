@@ -101,7 +101,11 @@ export default function HomePage() {
             <h2 className="font-display text-4xl sm:text-5xl">
               {siteConfig.ui.servicesHeading}
             </h2>
-            <p className="prose-editorial mt-6">{siteConfig.description}</p>
+            <p className="prose-editorial mt-6">
+              {isNeedsInput(siteConfig.description)
+                ? siteConfig.ui.pendingLabel
+                : siteConfig.description}
+            </p>
             <TextLink href="/services" className="mt-8">
               {siteConfig.ui.servicesNav}
             </TextLink>
