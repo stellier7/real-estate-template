@@ -38,7 +38,7 @@ export const siteConfig = {
       phone: "+504 9606-5710",
     },
   ],
-  socials: [],
+  socials: [] as { label: string; href: string }[],
   markets: ["Comayagua"],
   about: {
     story: "Ayudamos a propietarios a vender casa, terreno o apartamento: estudio de mercado para fijar el mejor precio, promoción en los mejores canales y asesoría personalizada.",
