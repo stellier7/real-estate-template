@@ -1,4 +1,4 @@
-# Images — Rony Sorto – Bienes Raíces Comayagua
+# Images — Grupo Los Olivos Honduras
 
 Replace placeholders with owned assets.
 
