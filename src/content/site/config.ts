@@ -123,7 +123,11 @@ export const siteConfig = {
     { label: "Servicios", href: "/services" },
     { label: "Contacto", href: "/contact" },
   ],
-  homeFeaturedPropertySlugs: [] as string[],
+  homeFeaturedPropertySlugs: [
+    "propiedad-11-cuartos-comayagua-rs01",
+    "casa-amueblada-atras-wendys-renta-rs02",
+    "la-jaguita-propiedad-venta-rs04",
+  ],
   sourceWebsite: "",
   ctaPreference: "WhatsApp primero, luego teléfono",
   tone: "directo, práctico y local",
