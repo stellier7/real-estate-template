@@ -38,7 +38,7 @@ export const siteConfig = {
       phone: "+504 9561-8189",
     },
   ],
-  socials: [],
+  socials: [] as { label: string; href: string }[],
   markets: [],
   about: {
     story: NEEDS_INPUT,
