@@ -1,4 +1,4 @@
-# Images — Rony Sorto – Bienes Raíces Comayagua
+# Images — Lotes Comayagua
 
 Replace placeholders with owned assets.
 
