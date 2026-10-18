@@ -38,7 +38,7 @@ export const siteConfig = {
       phone: "+504 2772-4525",
     },
   ],
-  socials: [],
+  socials: [] as { label: string; href: string }[],
   markets: [],
   about: {
     story: NEEDS_INPUT,
