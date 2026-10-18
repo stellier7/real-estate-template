@@ -16,6 +16,32 @@ const COMMERCIAL_TYPES: PropertyType[] = [
   "industrial",
 ];
 
+const TYPE_LABELS: Record<PropertyType, string> = {
+  residential: "Residencial",
+  apartment: "Apartamento",
+  villa: "Villa",
+  house: "Casa",
+  condominium: "Condominio",
+  commercial: "Comercial",
+  office: "Oficina",
+  retail: "Local comercial",
+  hotel: "Hotel",
+  development: "Desarrollo",
+  land: "Terreno",
+  lot: "Lote",
+  industrial: "Industrial",
+  investment: "Inversión",
+};
+
+const STATUS_LABELS: Record<Property["status"], string> = {
+  available: "Disponible",
+  sold: "Vendido",
+  reserved: "Reservado",
+  under_development: "En desarrollo",
+  coming_soon: "Próximamente",
+  off_market: "Fuera de mercado",
+};
+
 export function supportsResidentialSpecs(type: PropertyType): boolean {
   return RESIDENTIAL_TYPES.includes(type);
 }
@@ -36,38 +62,85 @@ export function supportsInvestmentBlock(property: Property): boolean {
   );
 }
 
-const TYPE_LABELS: Record<PropertyType, string> = {
-  residential: "Residencial",
-  apartment: "Apartamento",
-  villa: "Villa",
-  house: "Casa",
-  condominium: "Condominio",
-  commercial: "Comercial",
-  office: "Oficina",
-  retail: "Local",
-  hotel: "Hotel",
-  development: "Desarrollo",
-  land: "Terreno",
-  lot: "Lote",
-  industrial: "Industrial",
-  investment: "Inversión",
-};
-
-const STATUS_LABELS: Record<Property["status"], string> = {
-  available: "Disponible",
-  reserved: "Reservado",
-  sold: "Vendido",
-  under_development: "En desarrollo",
-  coming_soon: "Próximamente",
-  off_market: "Fuera de mercado",
-};
-
 export function formatPropertyType(type: PropertyType): string {
-  return TYPE_LABELS[type];
+  return TYPE_LABELS[type] ?? type;
 }
 
 export function formatStatus(status: Property["status"]): string {
-  return STATUS_LABELS[status];
+  return STATUS_LABELS[status] ?? status;
+}
+
+export type ListingMode = "sale" | "rent" | "both";
+
+export function formatListingTag(tag: string): string {
+  if (tag === "venta") return "Venta";
+  if (tag === "alquiler") return "Alquiler";
+  return tag;
+}
+
+export function getListingMode(tags: string[] | undefined): ListingMode {
+  const hasSale = tags?.includes("venta") === true;
+  const hasRent = tags?.includes("alquiler") === true;
+  if (hasSale && hasRent) return "both";
+  if (hasRent) return "rent";
+  return "sale";
+}
+
+export function listingTagsFromMode(mode: ListingMode): string[] {
+  switch (mode) {
+    case "sale":
+      return ["venta"];
+    case "rent":
+      return ["alquiler"];
+    case "both":
+      return ["venta", "alquiler"];
+    default: {
+      const _exhaustive: never = mode;
+      return _exhaustive;
+    }
+  }
+}
+
+export function formatPropertyListing(tags: string[] | undefined): string {
+  const mode = getListingMode(tags);
+  switch (mode) {
+    case "sale":
+      return "Venta";
+    case "rent":
+      return "Alquiler";
+    case "both":
+      return "Venta y alquiler";
+    default: {
+      const _exhaustive: never = mode;
+      return _exhaustive;
+    }
+  }
+}
+
+export function parseListingMode(value: string | null | undefined): ListingMode {
+  if (value === "rent" || value === "both") return value;
+  return "sale";
+}
+
+const FILTER_PROPERTY_TYPES: PropertyType[] = [
+  "house",
+  "apartment",
+  "villa",
+  "land",
+  "commercial",
+  "office",
+  "retail",
+  "industrial",
+  "condominium",
+];
+
+export function parsePropertyFilterType(value: string | undefined): PropertyType | undefined {
+  if (!value) {
+    return undefined;
+  }
+  return FILTER_PROPERTY_TYPES.includes(value as PropertyType)
+    ? (value as PropertyType)
+    : undefined;
 }
 
 export function getDisplayPrice(property: Property): string | null {
@@ -75,7 +148,7 @@ export function getDisplayPrice(property: Property): string | null {
     return property.pricing.display;
   }
   if (property.pricing?.priceOnRequest) {
-    return "Precio a consultar";
+    return "Consultar precio";
   }
   if (
     property.pricing?.amount !== undefined &&

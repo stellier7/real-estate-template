@@ -1,8 +1,6 @@
 import type { CSSProperties } from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SiteHeader } from "@/components/layout/SiteHeader";
 import { siteConfig } from "@/content/site/config";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 import "./globals.css";
@@ -21,6 +19,12 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = buildSiteMetadata();
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,7 +33,7 @@ export default function RootLayout({
   const { colors } = siteConfig.brand;
 
   return (
-    <html lang={siteConfig.locale}>
+    <html lang="es">
       <body
         className={`${cormorant.variable} ${dmSans.variable} antialiased`}
         style={
@@ -38,13 +42,13 @@ export default function RootLayout({
             "--foreground": colors.foreground,
             "--muted": colors.muted,
             "--accent": colors.accent,
+            "--accent-hover": colors.accentHover,
+            "--accent-soft": colors.accentSoft,
             "--surface": colors.surface,
           } as CSSProperties
         }
       >
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
+        {children}
       </body>
     </html>
   );

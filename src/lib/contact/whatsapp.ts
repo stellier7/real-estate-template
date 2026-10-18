@@ -9,13 +9,18 @@ export function buildWhatsAppUrl(message?: string): string {
   if (!hasWhatsApp()) {
     return "#";
   }
-  const text = message ?? siteConfig.whatsapp.defaultMessage;
-  const encoded = encodeURIComponent(text);
+  const text = isNeedsInput(message ?? "")
+    ? siteConfig.whatsapp.defaultMessage
+    : (message ?? siteConfig.whatsapp.defaultMessage);
+  const safeText = isNeedsInput(text)
+    ? "Hola, me interesa obtener información."
+    : text;
+  const encoded = encodeURIComponent(safeText);
   return `https://wa.me/${siteConfig.whatsapp.e164}?text=${encoded}`;
 }
 
 export function buildPropertyWhatsAppUrl(propertyName: string): string {
   return buildWhatsAppUrl(
-    `Hola, me interesa obtener más información sobre ${propertyName}.`,
+    `Hola, me gustaría recibir más información sobre ${propertyName}.`,
   );
 }

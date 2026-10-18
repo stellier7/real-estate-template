@@ -1,7 +1,4 @@
 import type { Property } from "@/lib/properties/types";
 
-/**
- * Property listings for this prospect.
- * Leave empty until real listings (with owned photos) are supplied.
- */
+/** Demo records removed — live catalog loads from `src/data/properties.json` via `propertyRepository`. */
 export const properties: Property[] = [];

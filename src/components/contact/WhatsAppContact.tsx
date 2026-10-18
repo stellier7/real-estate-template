@@ -13,10 +13,12 @@ export function WhatsAppContact({ heading, message }: WhatsAppContactProps) {
         {heading ? (
           <h2 className="font-display text-2xl sm:text-3xl">{heading}</h2>
         ) : null}
-        <p className="prose-editorial mt-4">{siteConfig.ui.pendingLabel}</p>
-        <p className="mt-6 text-sm text-muted">
-          Tel. {siteConfig.phone.display}
+        <p className="prose-editorial mt-4">
+          {siteConfig.homepage.pendingLabel}
         </p>
+        {!isPhoneMissing() ? (
+          <p className="type-meta mt-6">Tel. {siteConfig.phone}</p>
+        ) : null}
       </div>
     );
   }
@@ -28,18 +30,29 @@ export function WhatsAppContact({ heading, message }: WhatsAppContactProps) {
       {heading ? (
         <h2 className="font-display text-2xl sm:text-3xl">{heading}</h2>
       ) : null}
-      <p className="prose-editorial mt-4">{siteConfig.ui.whatsappBlurb}</p>
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="focus-ring mt-8 inline-flex items-center gap-3 text-sm uppercase tracking-[0.18em] text-accent"
-      >
-        {siteConfig.ui.whatsappCta}
-        <span className="text-muted normal-case tracking-normal">
-          {siteConfig.whatsapp.display}
-        </span>
-      </a>
+      <p className="prose-editorial mt-4">
+        Escríbanos por WhatsApp para visitas, disponibilidad y asesoría
+        personalizada.
+      </p>
+      <p className="type-meta mt-6">
+        Use el botón flotante de WhatsApp o{" "}
+        <a
+          href={url}
+          className="focus-ring font-medium text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          abrir chat · {siteConfig.whatsapp.display}
+        </a>
+        .
+      </p>
     </div>
+  );
+}
+
+function isPhoneMissing() {
+  return (
+    !siteConfig.phone ||
+    siteConfig.phone === "needs input"
   );
 }

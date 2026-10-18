@@ -1,39 +1,32 @@
-import type { SiteConfig } from "./types";
-import { NEEDS_INPUT } from "./types";
-import {
-  defaultNav,
-  defaultUi,
-  imagePaths,
-  neutralBrandColors,
-} from "./ui-defaults";
+import { NEEDS_INPUT } from "./needs-input";
 
 const prospectId = "rony-sorto";
-const images = imagePaths(prospectId);
+const imageFolder = `/images/${prospectId}`;
 
 /**
- * Prospect content for this branch.
- * Change only this file and /public/images/<prospectId>/ on prospect branches.
+ * Prospect content for this branch (Altair template base).
+ * On prospect branches, change only this file and /public/images/<prospectId>/.
  */
-export const siteConfig: SiteConfig = {
+export const siteConfig = {
   prospectId,
   name: "Rony Sorto – Bienes Raíces Comayagua",
+  /** Short label in the header mark */
+  brandShort: "Rony Sorto",
+  heroImage: `${imageFolder}/hero.svg`,
   tagline: "Consulte a los expertos",
   description:
     "Venta de terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz. Asesoría directa, local y disponible las 24 horas.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  locale: "es",
-  tone: "directo, práctico y local",
-  brand: {
-    colors: neutralBrandColors,
-    colorsStatus: NEEDS_INPUT,
-    logoStatus: NEEDS_INPUT,
-  },
-  images,
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000"),
+  defaultOgImage: `${imageFolder}/hero.svg`,
+  logo: `${imageFolder}/logo.svg`,
+  logoFull: `${imageFolder}/logo.svg`,
   contactEmail: NEEDS_INPUT,
-  phone: {
-    display: "9606-6416",
-    e164: "50496066416",
-  },
+  phone: "9606-6416",
+  mobile: "9606-6416",
   whatsapp: {
     display: "9606-6416",
     e164: "50496066416",
@@ -47,14 +40,10 @@ export const siteConfig: SiteConfig = {
       city: "Comayagua",
       address: "Colonia El INVA, una cuadra arriba del Hotel Morales",
       phone: "9606-6416",
-      hours: "24 horas",
     },
   ],
   socials: [
-    {
-      label: "Facebook",
-      href: "https://www.facebook.com/RonySortoBR",
-    },
+    { label: "Facebook", href: "https://www.facebook.com/RonySortoBR" },
     {
       label: "Instagram",
       href: "https://www.instagram.com/ronysortobrcomayagua",
@@ -67,14 +56,7 @@ export const siteConfig: SiteConfig = {
       label: "TikTok Noticias",
       href: "https://www.tiktok.com/@ronysortonoticias",
     },
-    {
-      label: "X",
-      href: "https://x.com/RonySortoBR",
-    },
-    {
-      label: "YouTube",
-      href: "https://www.youtube.com/results?search_query=Rony+Sorto+Bienes+Ra%C3%ADces+Comayagua",
-    },
+    { label: "X", href: "https://x.com/RonySortoBR" },
   ],
   markets: ["Comayagua", "Palmerola", "Lago de Yojoa", "La Paz"],
   about: {
@@ -97,25 +79,52 @@ export const siteConfig: SiteConfig = {
       body: "Orientación clara sobre el mercado en Comayagua, Palmerola, Lago de Yojoa y La Paz.",
     },
   ],
-  ctaPreference: "WhatsApp primero, luego teléfono",
   homepage: {
-    heroHeadline: "Bienes raíces en Comayagua con asesoría directa",
-    heroSupporting:
-      "Terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz. Consulte a los expertos — disponible las 24 horas.",
+    heroSupporting: "Consulte a los expertos — disponible las 24 horas",
+    heroLead:
+      "Terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz.",
+    heroLocation: "Comayagua, Honduras",
     primaryCtaLabel: "Hablar por WhatsApp",
-    secondaryCtaLabel: "Ver propiedades",
+    catalogCtaLabel: "Ver propiedades",
+    aboutEyebrow: "Nosotros",
+    aboutHeading: "Quiénes somos",
+    featuredEyebrow: "Catálogo",
+    featuredHeading: "Inmuebles destacados",
+    servicesEyebrow: "Oferta",
+    servicesHeading: "Servicios",
+    marketsHeading: "Zonas de atención",
+    emptyCatalog:
+      "Aún no hay propiedades publicadas. Escríbanos por WhatsApp mientras preparamos el catálogo.",
+    pendingLabel: "Pendiente de información",
   },
   seo: {
     metaTitle: "Rony Sorto – Bienes Raíces Comayagua",
     metaDescription:
       "Terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz. Consulte a los expertos por WhatsApp las 24 horas.",
     privacyText: NEEDS_INPUT,
-    defaultOgImage: images.hero,
   },
-  nav: defaultNav,
-  ui: {
-    ...defaultUi,
-    whatsappBlurb:
-      "Escríbanos por WhatsApp para consultas sobre terrenos, casas o asesoría. Respondemos las 24 horas.",
+  brand: {
+    colorsStatus: NEEDS_INPUT,
+    logoStatus: NEEDS_INPUT,
+    /** Neutral palette until the owner supplies brand colors. */
+    colors: {
+      background: "#f0eeea",
+      foreground: "#1c1b19",
+      muted: "#5e5a54",
+      accent: "#3f4f3c",
+      accentHover: "#334032",
+      accentSoft: "rgba(63, 79, 60, 0.14)",
+      surface: "#f7f5f1",
+    },
   },
+  nav: [
+    { label: "Propiedades", href: "/properties" },
+    { label: "Nosotros", href: "/about" },
+    { label: "Servicios", href: "/services" },
+    { label: "Contacto", href: "/contact" },
+  ],
+  homeFeaturedPropertySlugs: [] as string[],
+  sourceWebsite: "",
+  ctaPreference: "WhatsApp primero, luego teléfono",
+  tone: "directo, práctico y local",
 };

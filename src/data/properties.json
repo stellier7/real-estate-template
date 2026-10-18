@@ -1,0 +1,25 @@
+{
+  "agency": {
+    "name": "needs input",
+    "description": "needs input",
+    "logo": "",
+    "email": "needs input",
+    "phone": "needs input",
+    "mobile": "needs input",
+    "whatsapp": "needs input",
+    "address": {
+      "street": "needs input",
+      "city": "Comayagua",
+      "region": "Comayagua",
+      "country": "Honduras"
+    },
+    "sourceWebsite": "",
+    "scrapedAt": "2026-10-18T00:00:00.000Z"
+  },
+  "properties": [],
+  "stats": {
+    "total": 0,
+    "forSale": 0,
+    "forRent": 0
+  }
+}
