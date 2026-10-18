@@ -1,4 +1,4 @@
-# Images — Rony Sorto – Bienes Raíces Comayagua
+# Images — Bienes Raíces y Construcción (BRC)
 
 Replace placeholders with owned assets.
 
