@@ -204,7 +204,7 @@ export const siteConfig = {
       phone: "${esc(data.phoneDisplay)}",
     },
   ],
-  socials: [],
+  socials: [] as { label: string; href: string }[],
   markets: ${markets},
   about: {
     story: ${lit(aboutStory)},
