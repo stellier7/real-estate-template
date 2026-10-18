@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
-import { propertyRepository } from "@/lib/properties/repository";
+import { getAllProperties } from "@/lib/properties/service";
 import { absoluteUrl } from "@/lib/seo/metadata";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = ["", "/properties", "/about", "/services", "/contact"].map(
     (path) => ({
       url: absoluteUrl(path || "/"),
@@ -10,12 +10,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  const propertyRoutes = propertyRepository.getAll().map((property) => ({
-    url: absoluteUrl(`/properties/${property.slug}`),
-    lastModified: property.publishedAt
+  const properties = await getAllProperties();
+  const propertyRoutes = properties.map((property) => {
+    const parsed = property.publishedAt
       ? new Date(property.publishedAt)
-      : new Date(),
-  }));
+      : new Date();
+    const lastModified = Number.isNaN(parsed.getTime()) ? new Date() : parsed;
+    return {
+      url: absoluteUrl(`/properties/${property.slug}`),
+      lastModified,
+    };
+  });
 
   return [...staticRoutes, ...propertyRoutes];
 }

@@ -125,5 +125,6 @@ export type Property = {
 export type PropertyFilter = {
   type?: PropertyType;
   status?: PropertyStatus;
+  listing?: "sale" | "rent";
   query?: string;
 };

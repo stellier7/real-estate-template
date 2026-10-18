@@ -15,20 +15,21 @@ export function WhatsAppContact({ heading, message }: WhatsAppContactProps) {
         <h2 className="font-display text-2xl sm:text-3xl">{heading}</h2>
       ) : null}
       <p className="prose-editorial mt-4">
-        Message us on WhatsApp for viewings, availability, and off-market introductions.
-        We typically respond during business hours.
+        Escríbanos por WhatsApp para visitas, disponibilidad y asesoría personalizada. Respondemos
+        en horario de oficina.
       </p>
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="focus-ring mt-8 inline-flex items-center gap-3 text-sm uppercase tracking-[0.18em] text-accent"
-      >
-        Chat on WhatsApp
-        <span className="text-muted normal-case tracking-normal">
-          {siteConfig.whatsapp.display}
-        </span>
-      </a>
+      <p className="type-meta mt-6">
+        Use el botón flotante de WhatsApp o{" "}
+        <a
+          href={url}
+          className="focus-ring font-medium text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          abrir chat · {siteConfig.whatsapp.display}
+        </a>
+        .
+      </p>
     </div>
   );
 }

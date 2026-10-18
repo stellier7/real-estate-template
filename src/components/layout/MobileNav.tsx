@@ -8,28 +8,28 @@ export function MobileNav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="md:hidden">
+    <div className="relative lg:hidden">
       <button
         type="button"
-        className="focus-ring text-sm uppercase tracking-[0.18em] text-muted"
+        className="focus-ring inline-flex min-h-10 items-center rounded-full border border-accent/40 bg-accent-soft px-3.5 py-1.5 text-xs font-medium uppercase tracking-[0.14em] text-accent shadow-[var(--shadow-soft)]"
         aria-expanded={open}
         aria-controls="mobile-nav-panel"
         onClick={() => setOpen((value) => !value)}
       >
-        {open ? "Close" : "Menu"}
+        {open ? "Cerrar" : "Menú"}
       </button>
       {open ? (
         <nav
           id="mobile-nav-panel"
-          className="absolute inset-x-0 top-full border-b border-line bg-background px-5 py-6"
-          aria-label="Mobile"
+          className="absolute right-0 top-[calc(100%+0.35rem)] z-50 w-[min(100vw-1.5rem,20rem)] rounded-[var(--radius-lg)] border border-line/80 bg-background/95 px-5 py-6 shadow-[var(--shadow-card)] backdrop-blur-lg"
+          aria-label="Navegación móvil"
         >
-          <ul className="flex flex-col gap-4 text-lg">
+          <ul className="flex flex-col gap-1">
             {siteConfig.nav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="focus-ring font-display"
+                  className="focus-ring inline-flex min-h-11 w-full items-center py-2 font-display text-xl transition-colors hover:text-accent"
                   onClick={() => setOpen(false)}
                 >
                   {item.label}

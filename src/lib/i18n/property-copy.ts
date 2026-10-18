@@ -1,0 +1,52 @@
+/** Spanish UI strings for property surfaces */
+
+export const propertyCopy = {
+  /** Screen-reader section title; visible hierarchy comes from lead + body layout. */
+  descriptionAccessibleTitle: "Descripción completa",
+  descriptionDetailsLabel: "Detalles de la publicación",
+  specifications: "Especificaciones",
+  features: "Características",
+  amenities: "Amenidades",
+  video: "Video",
+  watchFilm: "Ver video de la propiedad",
+  virtualTour: "Recorrido virtual",
+  openVirtualTour: "Abrir recorrido virtual",
+  investment: "Inversión",
+  yield: "Rendimiento",
+  tenancy: "Arrendamiento",
+  documents: "Documentos",
+  location: "Ubicación",
+  viewOnMap: "Ver en mapa",
+  related: "Propiedades relacionadas",
+  viewAll: "Ver todas",
+  discuss: "Hablemos de esta propiedad",
+  discussBody:
+    "Cuéntenos qué busca y nuestro equipo le propondrá visitas y material de apoyo.",
+  whatsapp: "WhatsApp",
+  share: "Compartir",
+  shareCopied: "Enlace copiado",
+  shareFailed: "No se pudo compartir",
+  viewProperty: "Ver propiedad",
+  enquireWhatsApp: "Consultar por WhatsApp",
+  summaryHeading: "Resumen",
+  catalogEmptyTitle: "Sin resultados para estos filtros",
+  catalogEmptyBody:
+    "Pruebe otra búsqueda, cambie el tipo de inmueble o quite los filtros para ver todo el catálogo.",
+  catalogViewAll: "Ver todo el catálogo",
+  catalogSkipToResults: "Saltar a los resultados",
+  catalogFilterHint:
+    "Busque por ciudad, título, zona o código (ej. 6934898). Elija tipo y negocio, luego pulse «Aplicar filtros».",
+  specLabels: {
+    totalArea: "Área total",
+    lotSize: "Terreno",
+    bedrooms: "Habitaciones",
+    bathrooms: "Baños",
+    parking: "Estacionamiento",
+    yearBuilt: "Año de construcción",
+    useClass: "Uso",
+    floors: "Pisos",
+    units: "Unidades",
+    zoning: "Zonificación",
+    buildableArea: "Área construible",
+  },
+} as const;
