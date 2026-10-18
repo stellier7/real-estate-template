@@ -1,4 +1,4 @@
-# Images — Rony Sorto – Bienes Raíces Comayagua
+# Images — Bienes & Raíces Hogares de Amor
 
 Replace placeholders with owned assets.
 
