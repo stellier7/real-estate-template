@@ -35,29 +35,29 @@ export function PropertyPageComposer({ property }: PropertyPageComposerProps) {
   const residentialRows =
     property.residential && supportsResidentialSpecs(property.propertyType)
       ? [
-          ["Total area", property.residential.totalArea, "m²"],
-          ["Lot size", property.residential.lotSize, "m²"],
-          ["Bedrooms", property.residential.bedrooms],
-          ["Bathrooms", property.residential.bathrooms],
-          ["Parking", property.residential.parking],
-          ["Year built", property.residential.yearBuilt],
+          ["Área total", property.residential.totalArea, "m²"],
+          ["Área de lote", property.residential.lotSize, "m²"],
+          ["Dormitorios", property.residential.bedrooms],
+          ["Baños", property.residential.bathrooms],
+          ["Estacionamientos", property.residential.parking],
+          ["Año de construcción", property.residential.yearBuilt],
         ]
       : [];
 
   const commercialRows =
     property.commercial && supportsCommercialSpecs(property.propertyType)
       ? [
-          ["Use class", property.commercial.useClass],
-          ["Floors", property.commercial.floors],
-          ["Units", property.commercial.units],
+          ["Uso", property.commercial.useClass],
+          ["Niveles", property.commercial.floors],
+          ["Unidades", property.commercial.units],
         ]
       : [];
 
   const landRows =
     property.land && supportsLandSpecs(property.propertyType)
       ? [
-          ["Zoning", property.land.zoning],
-          ["Buildable area", property.land.buildableArea, "m²"],
+          ["Zonificación", property.land.zoning],
+          ["Área edificable", property.land.buildableArea, "m²"],
         ]
       : [];
 
@@ -92,7 +92,7 @@ export function PropertyPageComposer({ property }: PropertyPageComposerProps) {
               rel="noopener noreferrer"
               className="focus-ring mt-8 inline-flex text-sm uppercase tracking-[0.18em] text-accent"
             >
-              {property.contact?.ctaLabel ?? "Enquire on WhatsApp"}
+              {property.contact?.ctaLabel ?? "Consultar por WhatsApp"}
             </a>
           </div>
         </div>
@@ -108,14 +108,14 @@ export function PropertyPageComposer({ property }: PropertyPageComposerProps) {
 
       {property.description ? (
         <Section>
-          <h2 className="font-display text-3xl sm:text-4xl">The property</h2>
+          <h2 className="font-display text-3xl sm:text-4xl">La propiedad</h2>
           <p className="prose-editorial mt-6 whitespace-pre-line">{property.description}</p>
         </Section>
       ) : null}
 
       {residentialRows.length + commercialRows.length + landRows.length > 0 ? (
         <Section className="bg-surface">
-          <h2 className="font-display text-3xl sm:text-4xl">Specifications</h2>
+          <h2 className="font-display text-3xl sm:text-4xl">Especificaciones</h2>
           <dl className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[...residentialRows, ...commercialRows, ...landRows]
               .filter((row) => row[1] !== undefined && row[1] !== null)
@@ -134,7 +134,7 @@ export function PropertyPageComposer({ property }: PropertyPageComposerProps) {
 
       {property.features && property.features.length > 0 ? (
         <Section>
-          <h2 className="font-display text-3xl sm:text-4xl">Features</h2>
+          <h2 className="font-display text-3xl sm:text-4xl">Características</h2>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
             {property.features.map((feature) => (
               <li key={feature} className="text-muted">{feature}</li>
@@ -145,7 +145,7 @@ export function PropertyPageComposer({ property }: PropertyPageComposerProps) {
 
       {property.amenities && property.amenities.length > 0 ? (
         <Section>
-          <h2 className="font-display text-3xl sm:text-4xl">Amenities</h2>
+          <h2 className="font-display text-3xl sm:text-4xl">Amenidades</h2>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
             {property.amenities.map((item) => (
               <li key={item} className="text-muted">{item}</li>
@@ -163,38 +163,38 @@ export function PropertyPageComposer({ property }: PropertyPageComposerProps) {
             target="_blank"
             rel="noreferrer"
           >
-            Watch property film
+            Ver video de la propiedad
           </a>
         </Section>
       ) : null}
 
       {property.media.virtualTour ? (
         <Section>
-          <h2 className="font-display text-3xl sm:text-4xl">Virtual tour</h2>
+          <h2 className="font-display text-3xl sm:text-4xl">Recorrido virtual</h2>
           <a
             href={property.media.virtualTour.url}
             className="focus-ring mt-4 inline-block text-accent"
             target="_blank"
             rel="noreferrer"
           >
-            {property.media.virtualTour.label ?? "Open virtual tour"}
+            {property.media.virtualTour.label ?? "Abrir recorrido virtual"}
           </a>
         </Section>
       ) : null}
 
       {supportsInvestmentBlock(property) && property.investment ? (
         <Section className="bg-surface">
-          <h2 className="font-display text-3xl sm:text-4xl">Investment</h2>
+          <h2 className="font-display text-3xl sm:text-4xl">Inversión</h2>
           <dl className="mt-6 grid gap-6 sm:grid-cols-2">
             {property.investment.yield ? (
               <div>
-                <dt className="text-xs uppercase tracking-[0.2em] text-muted">Yield</dt>
+                <dt className="text-xs uppercase tracking-[0.2em] text-muted">Rendimiento</dt>
                 <dd className="mt-2 font-display text-2xl">{property.investment.yield}</dd>
               </div>
             ) : null}
             {property.investment.tenancy ? (
               <div>
-                <dt className="text-xs uppercase tracking-[0.2em] text-muted">Tenancy</dt>
+                <dt className="text-xs uppercase tracking-[0.2em] text-muted">Arrendamiento</dt>
                 <dd className="mt-2 text-muted">{property.investment.tenancy}</dd>
               </div>
             ) : null}
@@ -211,7 +211,7 @@ export function PropertyPageComposer({ property }: PropertyPageComposerProps) {
 
       {(property.floorPlans?.length ?? 0) > 0 || (property.documents?.length ?? 0) > 0 ? (
         <Section>
-          <h2 className="font-display text-3xl sm:text-4xl">Documents</h2>
+          <h2 className="font-display text-3xl sm:text-4xl">Documentos</h2>
           <ul className="mt-6 space-y-3">
             {[...(property.floorPlans ?? []), ...(property.documents ?? [])].map((doc) => (
               <li key={doc.url}>
@@ -226,7 +226,7 @@ export function PropertyPageComposer({ property }: PropertyPageComposerProps) {
 
       {property.location.coordinates ? (
         <Section>
-          <h2 className="font-display text-3xl sm:text-4xl">Location</h2>
+          <h2 className="font-display text-3xl sm:text-4xl">Ubicación</h2>
           <p className="mt-4 text-muted">{property.location.label}</p>
           <a
             className="focus-ring mt-4 inline-block text-sm uppercase tracking-[0.18em] text-accent"
@@ -234,7 +234,7 @@ export function PropertyPageComposer({ property }: PropertyPageComposerProps) {
             target="_blank"
             rel="noreferrer"
           >
-            View on map
+            Ver en el mapa
           </a>
         </Section>
       ) : null}
@@ -242,8 +242,8 @@ export function PropertyPageComposer({ property }: PropertyPageComposerProps) {
       {related.length > 0 ? (
         <Section>
           <div className="mb-10 flex items-end justify-between gap-6">
-            <h2 className="font-display text-3xl sm:text-4xl">Related properties</h2>
-            <TextLink href="/properties">View all</TextLink>
+            <h2 className="font-display text-3xl sm:text-4xl">Propiedades relacionadas</h2>
+            <TextLink href="/properties">Ver todas</TextLink>
           </div>
           <div className="grid gap-16">
             {related.map((item) => (
@@ -256,10 +256,9 @@ export function PropertyPageComposer({ property }: PropertyPageComposerProps) {
       <Section className="border-t border-line">
         <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
-            <h2 className="font-display text-3xl sm:text-4xl">Discuss this property</h2>
+            <h2 className="font-display text-3xl sm:text-4xl">Consultar esta propiedad</h2>
             <p className="prose-editorial mt-4">
-              Share your requirements and our team will follow up with viewing options and
-              supporting materials.
+              Cuéntenos qué busca y le compartimos disponibilidad, visitas y material de apoyo.
             </p>
           </div>
           <a

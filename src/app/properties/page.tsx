@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { PropertyCard } from "@/components/directory/PropertyCard";
 import { DirectoryFilters } from "@/components/directory/DirectoryFilters";
 import { Section } from "@/components/layout/Section";
+import { siteConfig } from "@/content/site/config";
 import { propertyRepository } from "@/lib/properties/repository";
 import type { PropertyStatus, PropertyType } from "@/lib/properties/types";
 import { buildSiteMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = buildSiteMetadata({
-  title: "Properties",
-  description: "Browse the property directory—residential, commercial, land, and investment assets.",
+  title: siteConfig.ui.propertiesNav,
+  description: siteConfig.description,
   path: "/properties",
 });
 
@@ -20,12 +21,15 @@ type PropertiesPageProps = {
   }>;
 };
 
-export default async function PropertiesPage({ searchParams }: PropertiesPageProps) {
+export default async function PropertiesPage({
+  searchParams,
+}: PropertiesPageProps) {
   const params = await searchParams;
   const type = params.type as PropertyType | undefined;
   const status = params.status as PropertyStatus | undefined;
   const query = params.q;
 
+  const all = propertyRepository.getAll();
   const results = propertyRepository.filter({
     type: type || undefined,
     status: status || undefined,
@@ -35,25 +39,38 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
   return (
     <>
       <Section className="pb-0">
-        <h1 className="font-display text-5xl sm:text-6xl">Properties</h1>
+        <h1 className="font-display text-5xl sm:text-6xl">
+          {siteConfig.ui.propertiesNav}
+        </h1>
         <p className="prose-editorial mt-6 max-w-2xl">
-          A curated directory powered by the same structured data as each property page. Add a
-          record, assign a slug, and it appears here automatically.
+          {all.length === 0
+            ? siteConfig.ui.noPropertiesHint
+            : siteConfig.description}
         </p>
-        <DirectoryFilters
-          currentType={params.type}
-          currentStatus={params.status}
-          currentQuery={params.q}
-        />
+        {all.length > 0 ? (
+          <DirectoryFilters
+            currentType={params.type}
+            currentStatus={params.status}
+            currentQuery={params.q}
+          />
+        ) : null}
       </Section>
 
       <Section className="pt-10">
         {results.length === 0 ? (
-          <p className="text-muted">No properties match your filters.</p>
+          <p className="text-muted">
+            {all.length === 0
+              ? siteConfig.ui.noProperties
+              : "Ninguna propiedad coincide con los filtros."}
+          </p>
         ) : (
           <div className="grid gap-20">
             {results.map((property, index) => (
-              <PropertyCard key={property.id} property={property} priority={index < 2} />
+              <PropertyCard
+                key={property.id}
+                property={property}
+                priority={index < 2}
+              />
             ))}
           </div>
         )}

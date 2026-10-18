@@ -18,10 +18,13 @@ export function buildSiteMetadata(overrides?: {
 }): Metadata {
   const title = overrides?.title
     ? `${overrides.title} · ${siteConfig.name}`
-    : `${siteConfig.name} · ${siteConfig.tagline}`;
-  const description = overrides?.description ?? siteConfig.description;
+    : siteConfig.seo.metaTitle || `${siteConfig.name} · ${siteConfig.tagline}`;
+  const description =
+    overrides?.description ??
+    siteConfig.seo.metaDescription ??
+    siteConfig.description;
   const path = overrides?.path ?? "/";
-  const image = overrides?.image ?? siteConfig.defaultOgImage;
+  const image = overrides?.image ?? siteConfig.seo.defaultOgImage;
 
   return {
     title,
@@ -34,6 +37,7 @@ export function buildSiteMetadata(overrides?: {
       url: absoluteUrl(path),
       siteName: siteConfig.name,
       type: "website",
+      locale: "es_HN",
       images: [{ url: image }],
     },
     twitter: {
@@ -47,8 +51,7 @@ export function buildSiteMetadata(overrides?: {
 }
 
 export function buildPropertyMetadata(property: Property): Metadata {
-  const title =
-    property.seo.title ?? property.title ?? property.name;
+  const title = property.seo.title ?? property.title ?? property.name;
   const description =
     property.seo.description ??
     property.shortDescription ??
@@ -68,7 +71,7 @@ export function buildPropertyMetadata(property: Property): Metadata {
 
 export function buildPropertyJsonLd(property: Property): Record<string, unknown> {
   const price = property.pricing?.amount;
-  const currency = property.pricing?.currency ?? "EUR";
+  const currency = property.pricing?.currency ?? "HNL";
 
   return {
     "@context": "https://schema.org",

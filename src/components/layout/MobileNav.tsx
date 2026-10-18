@@ -16,13 +16,13 @@ export function MobileNav() {
         aria-controls="mobile-nav-panel"
         onClick={() => setOpen((value) => !value)}
       >
-        {open ? "Close" : "Menu"}
+        {open ? "Cerrar" : "Menú"}
       </button>
       {open ? (
         <nav
           id="mobile-nav-panel"
           className="absolute inset-x-0 top-full border-b border-line bg-background px-5 py-6"
-          aria-label="Mobile"
+          aria-label="Móvil"
         >
           <ul className="flex flex-col gap-4 text-lg">
             {siteConfig.nav.map((item) => (

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { siteConfig } from "@/content/site/config";
 import type { Property } from "@/lib/properties/types";
 import {
   formatPropertyType,
@@ -50,7 +51,7 @@ export function PropertyCard({ property, priority }: PropertyCardProps) {
           href={`/properties/${property.slug}`}
           className="focus-ring mt-4 text-sm uppercase tracking-[0.18em] text-accent"
         >
-          View property
+          {siteConfig.ui.viewProperty}
         </Link>
       </div>
     </article>

@@ -36,12 +36,38 @@ export function supportsInvestmentBlock(property: Property): boolean {
   );
 }
 
+const TYPE_LABELS: Record<PropertyType, string> = {
+  residential: "Residencial",
+  apartment: "Apartamento",
+  villa: "Villa",
+  house: "Casa",
+  condominium: "Condominio",
+  commercial: "Comercial",
+  office: "Oficina",
+  retail: "Local",
+  hotel: "Hotel",
+  development: "Desarrollo",
+  land: "Terreno",
+  lot: "Lote",
+  industrial: "Industrial",
+  investment: "Inversión",
+};
+
+const STATUS_LABELS: Record<Property["status"], string> = {
+  available: "Disponible",
+  reserved: "Reservado",
+  sold: "Vendido",
+  under_development: "En desarrollo",
+  coming_soon: "Próximamente",
+  off_market: "Fuera de mercado",
+};
+
 export function formatPropertyType(type: PropertyType): string {
-  return type.replace(/_/g, " ");
+  return TYPE_LABELS[type];
 }
 
 export function formatStatus(status: Property["status"]): string {
-  return status.replace(/_/g, " ");
+  return STATUS_LABELS[status];
 }
 
 export function getDisplayPrice(property: Property): string | null {
@@ -49,13 +75,13 @@ export function getDisplayPrice(property: Property): string | null {
     return property.pricing.display;
   }
   if (property.pricing?.priceOnRequest) {
-    return "Price on request";
+    return "Precio a consultar";
   }
   if (
     property.pricing?.amount !== undefined &&
     property.pricing.currency
   ) {
-    return new Intl.NumberFormat("en", {
+    return new Intl.NumberFormat("es-HN", {
       style: "currency",
       currency: property.pricing.currency,
       maximumFractionDigits: 0,
