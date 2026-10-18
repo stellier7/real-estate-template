@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/content/site/config";
+import { isNeedsInput } from "@/content/site/needs-input";
 import type { Property } from "@/lib/properties/types";
 
 const baseUrl = siteConfig.url.replace(/\/$/, "");
@@ -16,13 +17,21 @@ export function buildSiteMetadata(overrides?: {
   image?: string;
   noIndex?: boolean;
 }): Metadata {
+  const fallbackTitle = isNeedsInput(siteConfig.tagline)
+    ? siteConfig.name
+    : `${siteConfig.name} · ${siteConfig.tagline}`;
   const title = overrides?.title
     ? `${overrides.title} · ${siteConfig.name}`
-    : siteConfig.seo.metaTitle || `${siteConfig.name} · ${siteConfig.tagline}`;
-  const description =
-    overrides?.description ??
-    siteConfig.seo.metaDescription ??
-    siteConfig.description;
+    : isNeedsInput(siteConfig.seo.metaTitle)
+      ? fallbackTitle
+      : siteConfig.seo.metaTitle;
+  const description = (() => {
+    const candidate =
+      overrides?.description ??
+      siteConfig.seo.metaDescription ??
+      siteConfig.description;
+    return isNeedsInput(candidate) ? siteConfig.name : candidate;
+  })();
   const path = overrides?.path ?? "/";
   const image = overrides?.image ?? siteConfig.seo.defaultOgImage;
 
