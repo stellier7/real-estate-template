@@ -1,4 +1,4 @@
-# Images — Rony Sorto – Bienes Raíces Comayagua
+# Images — Inmobiliaria Comayagua, INCOM
 
 Replace placeholders with owned assets.
 
