@@ -12,7 +12,7 @@ export const siteConfig = {
   name: "Rony Sorto – Bienes Raíces Comayagua",
   /** Short label in the header mark */
   brandShort: "Rony Sorto",
-  heroImage: `${imageFolder}/hero.svg`,
+  heroImage: `${imageFolder}/hero.jpg`,
   tagline: "Consulte a los expertos",
   description:
     "Venta de terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz. Asesoría directa, local y disponible las 24 horas.",
@@ -21,9 +21,9 @@ export const siteConfig = {
     (process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
       : "http://localhost:3000"),
-  defaultOgImage: `${imageFolder}/hero.svg`,
-  logo: `${imageFolder}/logo.svg`,
-  logoFull: `${imageFolder}/logo.svg`,
+  defaultOgImage: `${imageFolder}/hero.jpg`,
+  logo: `${imageFolder}/logo.jpg`,
+  logoFull: `${imageFolder}/logo.jpg`,
   contactEmail: NEEDS_INPUT,
   phone: "9606-6416",
   mobile: "9606-6416",
@@ -80,11 +80,11 @@ export const siteConfig = {
     },
   ],
   homepage: {
-    heroSupporting: "Consulte a los expertos — disponible las 24 horas",
+    heroSupporting: "Asesor inmobiliario · Comayagua",
     heroLead:
-      "Terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz.",
+      "Construya su futuro con seguridad y confianza. Terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz.",
     heroLocation: "Comayagua, Honduras",
-    primaryCtaLabel: "Hablar por WhatsApp",
+    primaryCtaLabel: "Contactar ahora",
     catalogCtaLabel: "Ver propiedades",
     aboutEyebrow: "Nosotros",
     aboutHeading: "Quiénes somos",
@@ -104,17 +104,17 @@ export const siteConfig = {
     privacyText: NEEDS_INPUT,
   },
   brand: {
-    colorsStatus: NEEDS_INPUT,
-    logoStatus: NEEDS_INPUT,
-    /** Neutral palette until the owner supplies brand colors. */
+    colorsStatus: "derived from logo/hero assets",
+    logoStatus: "logo.jpg provided",
+    /** Navy + gold pulled from the provided brand hero. */
     colors: {
-      background: "#f0eeea",
-      foreground: "#1c1b19",
-      muted: "#5e5a54",
-      accent: "#3f4f3c",
-      accentHover: "#334032",
-      accentSoft: "rgba(63, 79, 60, 0.14)",
-      surface: "#f7f5f1",
+      background: "#f6f5f2",
+      foreground: "#1c1a24",
+      muted: "#5a564f",
+      accent: "#b08a3c",
+      accentHover: "#946f2c",
+      accentSoft: "rgba(176, 138, 60, 0.16)",
+      surface: "#ffffff",
     },
   },
   nav: [

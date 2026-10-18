@@ -1,13 +1,11 @@
 # Images — Rony Sorto – Bienes Raíces Comayagua
 
-Replace placeholders with owned assets.
+| Filename | Purpose | Status |
+|----------|---------|--------|
+| `logo.jpg` | Header mark (circular portrait) | Provided |
+| `logo-dark.jpg` | Dark sections | Same as logo for now |
+| `hero.jpg` | Homepage hero | Provided |
+| `gallery-01.jpg` … | Optional site gallery | Needed |
+| Property photos | Via property records (next) | Needed |
 
-| Filename | Purpose |
-|----------|---------|
-| `logo.svg` / `logo.png` | Header mark |
-| `logo-dark.svg` / `logo-dark.png` | Dark sections |
-| `hero.jpg` | Homepage hero |
-| `gallery-01.jpg` … `gallery-04.jpg` | Optional gallery |
-| `team-01.jpg` | Team (when provided) |
-
-Update paths in `src/content/site/config.ts` if extensions change.
+Property listings for the homepage featured block and marquee are **not** site gallery files — they live in the properties catalog (each listing needs its own hero photo).
