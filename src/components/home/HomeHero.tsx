@@ -158,19 +158,21 @@ function PortraitHero({
   stats: HomeHeroProps["stats"];
 }) {
   return (
-    <section className="hero-shell hero-shell-min relative overflow-hidden bg-[#cfc6b4]">
-      <div className="absolute inset-0">
+    <section className="hero-shell hero-shell-min relative overflow-hidden bg-[#9eb6d4]">
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Height-fit, right-aligned: full cathedral top-to-bottom, facade kept right */}
         <Image
           src={backgroundImage}
-          alt="Plaza y Catedral de Comayagua"
-          fill
+          alt="Catedral de la Inmaculada Concepción, Comayagua"
+          width={2400}
+          height={1350}
           priority
           sizes="100vw"
-          className="object-cover object-[72%_42%] saturate-[1.08]"
+          className="pointer-events-none absolute inset-y-0 right-0 h-full w-auto max-w-none select-none"
         />
-        {/* Keep cathedral visible behind copy; only a light wash for contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-background/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/55 via-transparent to-black/10" />
+        {/* Soft wash only — cathedral stays visible behind copy */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-background/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" />
       </div>
 
       <Container className="relative grid min-h-[inherit] grid-cols-1 items-end gap-0 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-stretch lg:gap-6">

@@ -13,9 +13,9 @@ export const siteConfig = {
   /** Short label in the header mark */
   brandShort: "Rony Sorto",
   heroLayout: "portrait" as const,
-  heroImage: `${imageFolder}/comayagua-plaza.jpg`,
+  heroImage: `${imageFolder}/comayagua-cathedral.jpg`,
   heroPortrait: `${imageFolder}/hero-portrait.jpg`,
-  heroBackground: `${imageFolder}/comayagua-plaza.jpg`,
+  heroBackground: `${imageFolder}/comayagua-cathedral.jpg`,
   tagline: "Consulte a los expertos",
   description:
     "Venta de terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz. Asesoría directa, local y disponible las 24 horas.",
@@ -24,7 +24,7 @@ export const siteConfig = {
     (process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
       : "http://localhost:3000"),
-  defaultOgImage: `${imageFolder}/comayagua-plaza.jpg`,
+  defaultOgImage: `${imageFolder}/comayagua-cathedral.jpg`,
   logo: `${imageFolder}/logo.jpg`,
   logoFull: `${imageFolder}/logo.jpg`,
   contactEmail: NEEDS_INPUT,
