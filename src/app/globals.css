@@ -212,13 +212,163 @@ body::before {
   }
 }
 
-.hero-portrait-frame {
-  min-height: min(58vh, 28rem);
+/*
+  Portrait hero background — cover crop biased to the ornate facade (right)
+  so the sticker sits over quieter sky/left mass, not the carved front.
+*/
+.hero-cathedral-bg {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  max-width: none;
+  object-fit: cover;
+  /* Mobile: keep carved facade in the open upper half above the copy strip */
+  object-position: 68% 28%;
 }
 
 @media (min-width: 1024px) {
+  .hero-cathedral-bg {
+    /* Desktop: pull facade right of the sticker into clearer sky/center-right */
+    object-position: 94% 42%;
+  }
+}
+
+/*
+  Mobile: cathedral-led — no sticker (it fought the photo).
+  Copy is a lean bottom strip: headline + line + CTAs.
+  Desktop: sticker + copy two-column grid.
+*/
+.hero-portrait-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.hero-portrait-frame {
+  display: none;
+}
+
+.hero-portrait-copy {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  width: 100%;
+  max-width: 36rem;
+  align-items: flex-end;
+  /* Leave most of the first viewport to the cathedral */
+  padding-top: clamp(9rem, 44vh, 20rem);
+  padding-bottom: max(1.1rem, env(safe-area-inset-bottom, 0px));
+}
+
+.hero-portrait-shell .hero-copy-title {
+  font-size: clamp(1.65rem, 5.8vw + 0.35rem, 2.2rem);
+  line-height: 1.12;
+}
+
+.hero-portrait-shell .hero-copy-meta {
+  margin-top: 0.55rem;
+}
+
+.hero-portrait-shell .hero-actions {
+  margin-top: 0.75rem;
+}
+
+.hero-portrait-shell .hero-cta-btn {
+  padding-block: 0.7rem;
+}
+
+.hero-portrait-shell .hero-copy-panel .prose-editorial,
+.hero-portrait-shell .hero-stat-band,
+.hero-portrait-shell .hero-actions > .mt-2 {
+  display: none;
+}
+
+.hero-portrait-shell .hero-copy-panel {
+  padding: 0.9rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .hero-portrait-copy {
+    padding-bottom: max(1.75rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .hero-portrait-shell .hero-copy-panel {
+    padding: 1.15rem 1.35rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-portrait-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr);
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+
   .hero-portrait-frame {
+    position: relative;
+    display: flex;
+    left: auto;
+    bottom: auto;
+    z-index: auto;
+    width: 100%;
+    max-width: none;
     min-height: 100%;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: auto;
+  }
+
+  .hero-portrait-image {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 10;
+    width: auto;
+    max-width: 100%;
+    height: min(86%, 46rem);
+    max-height: none;
+    margin-inline: auto;
+    object-fit: contain;
+    object-position: bottom;
+    filter: drop-shadow(0 22px 40px rgba(28, 26, 36, 0.38));
+  }
+
+  .hero-portrait-copy {
+    max-width: none;
+    align-items: center;
+    padding: 6rem 0;
+  }
+
+  .hero-portrait-shell .hero-copy-title {
+    font-size: var(--type-display-hero);
+    line-height: 1.05;
+  }
+
+  .hero-portrait-shell .hero-copy-meta {
+    margin-top: 1rem;
+  }
+
+  .hero-portrait-shell .hero-actions {
+    margin-top: 0;
+  }
+
+  .hero-portrait-shell .hero-cta-btn {
+    padding-block: 0.875rem;
+  }
+
+  .hero-portrait-shell .hero-copy-panel {
+    padding: 1.75rem;
+  }
+
+  .hero-portrait-shell .hero-copy-panel .prose-editorial,
+  .hero-portrait-shell .hero-stat-band {
+    display: block;
+  }
+
+  .hero-portrait-shell .hero-actions > .mt-2 {
+    display: flex;
   }
 }
 

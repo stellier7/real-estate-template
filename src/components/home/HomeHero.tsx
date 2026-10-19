@@ -158,9 +158,9 @@ function PortraitHero({
   stats: HomeHeroProps["stats"];
 }) {
   return (
-    <section className="hero-shell hero-shell-min relative overflow-hidden bg-[#9eb6d4]">
+    <section className="hero-shell hero-shell-min hero-portrait-shell relative overflow-hidden bg-[#9eb6d4]">
       <div className="absolute inset-0 overflow-hidden">
-        {/* Height-fit, right-aligned: full cathedral top-to-bottom, facade kept right */}
+        {/* Height-fit; shifted right so the facade clears the sticker */}
         <Image
           src={backgroundImage}
           alt="Catedral de la Inmaculada Concepción, Comayagua"
@@ -168,27 +168,26 @@ function PortraitHero({
           height={1350}
           priority
           sizes="100vw"
-          className="pointer-events-none absolute inset-y-0 right-0 h-full w-auto max-w-none select-none"
+          className="hero-cathedral-bg pointer-events-none select-none"
         />
-        {/* Soft wash only — cathedral stays visible behind copy */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-background/15" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-background/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/55 via-transparent to-transparent" />
       </div>
 
-      <Container className="relative grid min-h-[inherit] grid-cols-1 items-end gap-0 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-stretch lg:gap-6">
-        <div className="hero-portrait-frame relative mx-auto flex w-full max-w-lg items-end justify-center self-end lg:mx-0 lg:max-w-none">
+      <Container className="hero-portrait-grid relative min-h-[inherit]">
+        <div className="hero-portrait-frame">
           <Image
             src={portraitImage}
             alt={siteConfig.name}
             width={745}
             height={970}
             priority
-            sizes="(max-width: 1024px) 85vw, 44vw"
-            className="hero-portrait-image relative z-10 mx-auto h-auto w-full max-h-[62vh] object-contain object-bottom drop-shadow-[0_22px_40px_rgba(28,26,36,0.38)] sm:max-h-[70vh] lg:absolute lg:inset-x-0 lg:bottom-0 lg:h-[min(92%,52rem)] lg:max-h-none lg:w-auto lg:max-w-full lg:object-contain lg:object-bottom"
+            sizes="(max-width: 1024px) 45vw, 40vw"
+            className="hero-portrait-image"
           />
         </div>
 
-        <div className="relative z-10 flex items-end pb-10 pt-4 sm:pb-14 lg:items-center lg:py-24">
+        <div className="hero-portrait-copy">
           <div className="hero-copy-panel w-full max-w-xl rounded-[var(--radius-lg)] border border-white/35 bg-background/25 p-5 shadow-[0_18px_40px_-24px_rgba(28,26,36,0.45)] backdrop-blur-[2px] sm:p-7">
             <HeroCopy stats={stats} align="start" />
           </div>
