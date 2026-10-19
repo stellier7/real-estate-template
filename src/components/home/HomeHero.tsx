@@ -158,21 +158,23 @@ function PortraitHero({
   stats: HomeHeroProps["stats"];
 }) {
   return (
-    <section className="hero-shell hero-shell-min relative overflow-hidden bg-foreground/5">
+    <section className="hero-shell hero-shell-min relative overflow-hidden bg-[#d9d2c4]">
       <div className="absolute inset-0">
         <Image
           src={backgroundImage}
-          alt=""
+          alt="Plaza y Catedral de Comayagua"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[70%_35%] scale-110 blur-[2px] saturate-110"
+          className="object-cover object-[60%_40%] saturate-[1.05]"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/25 via-background/70 to-background/92" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
+        {/* Soft left so portrait blends; strong right panel for readable copy */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-background/35 to-background/88" />
+        <div className="absolute inset-y-0 right-0 w-full bg-gradient-to-l from-background via-background/80 to-transparent lg:w-[58%]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-background/25" />
       </div>
 
-      <Container className="relative grid min-h-[inherit] grid-cols-1 items-end gap-0 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-stretch lg:gap-8">
+      <Container className="relative grid min-h-[inherit] grid-cols-1 items-end gap-0 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-stretch lg:gap-6">
         <div className="hero-portrait-frame relative mx-auto w-full max-w-md self-end lg:mx-0 lg:max-w-none">
           <Image
             src={portraitImage}
@@ -181,12 +183,14 @@ function PortraitHero({
             height={1052}
             priority
             sizes="(max-width: 1024px) 80vw, 42vw"
-            className="hero-portrait-image relative z-10 mx-auto h-auto w-full max-h-[58vh] object-contain object-bottom drop-shadow-[0_28px_50px_rgba(28,26,36,0.35)] sm:max-h-[64vh] lg:absolute lg:inset-x-0 lg:bottom-0 lg:h-full lg:max-h-none lg:object-cover lg:object-[center_12%]"
+            className="hero-portrait-image relative z-10 mx-auto h-auto w-full max-h-[58vh] object-contain object-bottom drop-shadow-[0_28px_50px_rgba(28,26,36,0.4)] sm:max-h-[64vh] lg:absolute lg:inset-x-0 lg:bottom-0 lg:h-full lg:max-h-none lg:object-cover lg:object-[center_12%]"
           />
         </div>
 
         <div className="relative z-10 flex items-end pb-10 pt-4 sm:pb-14 lg:items-center lg:py-24">
-          <HeroCopy stats={stats} align="start" />
+          <div className="hero-copy-panel w-full max-w-xl rounded-[var(--radius-lg)] border border-line/60 bg-background/78 p-5 shadow-[var(--shadow-soft)] backdrop-blur-md sm:p-7 lg:bg-background/72">
+            <HeroCopy stats={stats} align="start" />
+          </div>
         </div>
       </Container>
     </section>
