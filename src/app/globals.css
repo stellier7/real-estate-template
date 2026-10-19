@@ -212,6 +212,16 @@ body::before {
   }
 }
 
+.hero-portrait-frame {
+  min-height: min(58vh, 28rem);
+}
+
+@media (min-width: 1024px) {
+  .hero-portrait-frame {
+    min-height: 100%;
+  }
+}
+
 .hero-panel {
   display: flex;
   min-height: inherit;

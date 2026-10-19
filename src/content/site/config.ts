@@ -12,7 +12,10 @@ export const siteConfig = {
   name: "Rony Sorto – Bienes Raíces Comayagua",
   /** Short label in the header mark */
   brandShort: "Rony Sorto",
+  heroLayout: "portrait" as const,
   heroImage: `${imageFolder}/hero.jpg`,
+  heroPortrait: `${imageFolder}/hero-portrait.jpg`,
+  heroBackground: `${imageFolder}/hero.jpg`,
   tagline: "Consulte a los expertos",
   description:
     "Venta de terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz. Asesoría directa, local y disponible las 24 horas.",
@@ -80,9 +83,10 @@ export const siteConfig = {
     },
   ],
   homepage: {
-    heroSupporting: "Asesor inmobiliario · Comayagua",
+    heroHeadline: "Construya su futuro con seguridad y confianza",
+    heroSupporting: "Rony Sorto — Asesor inmobiliario",
     heroLead:
-      "Construya su futuro con seguridad y confianza. Terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz.",
+      "Terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz. Atención directa las 24 horas.",
     heroLocation: "Comayagua, Honduras",
     primaryCtaLabel: "Contactar ahora",
     catalogCtaLabel: "Ver propiedades",

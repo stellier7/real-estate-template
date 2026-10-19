@@ -4,8 +4,9 @@
 |----------|---------|--------|
 | `logo.jpg` | Header mark (circular portrait) | Provided |
 | `logo-dark.jpg` | Dark sections | Same as logo for now |
-| `hero.jpg` | Homepage hero | Provided |
-| `gallery-01.jpg` … | Optional site gallery | Needed |
-| Property photos | Via property records (next) | Needed |
+| `hero.jpg` | Homepage background (full flyer) | Provided |
+| `hero-portrait.jpg` | Cropped agent portrait for layered hero | Derived from hero |
+| `hero-background.jpg` | Optional backdrop crop | Derived from hero |
+| `properties/flyer-01.jpg` … `flyer-15.jpg` | Listing cover images (marketing flyers) | Provided (15) |
 
-Property listings for the homepage featured block and marquee are **not** site gallery files — they live in the properties catalog (each listing needs its own hero photo).
+Listings live in `src/data/properties.json`. For cleaner detail pages later, replace flyers with cropped property-only photos.
