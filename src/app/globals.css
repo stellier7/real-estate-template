@@ -229,8 +229,18 @@ body::before {
 
 @media (min-width: 1024px) {
   .hero-cathedral-bg {
-    /* Desktop: pull facade right of the sticker into clearer sky/center-right */
-    object-position: 94% 42%;
+    /*
+      Oversized + nudged right so the carved facade sits in the open
+      center-right (clear of the sticker) without exposing the shell color.
+    */
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    width: 148%;
+    height: 148%;
+    object-fit: cover;
+    object-position: center;
+    transform: translate(-38%, -50%);
   }
 }
 
