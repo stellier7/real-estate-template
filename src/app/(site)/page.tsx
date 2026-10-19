@@ -50,9 +50,8 @@ export default async function HomePage() {
   const aboutStory = isNeedsInput(siteConfig.about.story)
     ? siteConfig.homepage.pendingLabel
     : siteConfig.about.story;
-  const services = Array.isArray(siteConfig.services)
-    ? siteConfig.services
-    : null;
+  const marketsLine =
+    siteConfig.markets.length > 0 ? siteConfig.markets.join(" · ") : null;
 
   return (
     <>
@@ -70,6 +69,9 @@ export default async function HomePage() {
           </RevealOnScroll>
           <RevealOnScroll variant="right" delayMs={120}>
             <p className="prose-editorial">{aboutStory}</p>
+            {marketsLine ? (
+              <p className="type-meta mt-5 text-muted">{marketsLine}</p>
+            ) : null}
           </RevealOnScroll>
         </div>
       </Section>
@@ -132,70 +134,6 @@ export default async function HomePage() {
           <RevealOnScroll variant="scale" delayMs={100}>
             <PropertyMarquee items={marqueeItems} />
           </RevealOnScroll>
-        </Section>
-      ) : null}
-
-      <Section className="bg-surface/80">
-        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-          <RevealOnScroll variant="left">
-            <p className="type-meta-caps text-accent">
-              {siteConfig.homepage.servicesEyebrow}
-            </p>
-            <h2 className="type-display-section mt-3 text-accent">
-              {siteConfig.homepage.servicesHeading}
-            </h2>
-            <p className="prose-editorial mt-6">
-              {isNeedsInput(siteConfig.description)
-                ? siteConfig.homepage.pendingLabel
-                : siteConfig.description}
-            </p>
-            <Button href="/services" variant="primary" className="mt-8">
-              Conocer servicios
-            </Button>
-          </RevealOnScroll>
-          <RevealOnScroll variant="right" delayMs={120}>
-            {services ? (
-              <ul className="grid gap-4 sm:grid-cols-2">
-                {services.map((item, i) => (
-                  <RevealOnScroll
-                    key={item.title}
-                    as="li"
-                    variant="up"
-                    delayMs={i * 70}
-                    className="service-line type-meta-caps border-t border-accent/35 pt-4 text-accent"
-                  >
-                    {item.title}
-                  </RevealOnScroll>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-muted">{siteConfig.homepage.pendingLabel}</p>
-            )}
-          </RevealOnScroll>
-        </div>
-      </Section>
-
-      {siteConfig.markets.length > 0 ? (
-        <Section>
-          <RevealOnScroll variant="up">
-            <p className="type-meta-caps text-accent">Cobertura</p>
-            <h2 className="type-display-section mt-3 text-accent">
-              {siteConfig.homepage.marketsHeading}
-            </h2>
-          </RevealOnScroll>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {siteConfig.markets.map((market, index) => (
-              <RevealOnScroll
-                key={market}
-                as="li"
-                variant="up"
-                delayMs={index * 80}
-                className="border-t border-line pt-3 text-muted"
-              >
-                {market}
-              </RevealOnScroll>
-            ))}
-          </ul>
         </Section>
       ) : null}
     </>
