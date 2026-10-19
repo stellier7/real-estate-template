@@ -83,7 +83,7 @@ export const siteConfig = {
     },
   ],
   homepage: {
-    heroHeadline: "Construya su futuro con seguridad y confianza",
+    heroHeadline: "Construya su futuro con Seguridad y Confianza",
     heroSupporting: "Rony Sorto — Asesor inmobiliario",
     heroLead:
       "Terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz. Atención directa las 24 horas.",
@@ -108,16 +108,16 @@ export const siteConfig = {
     privacyText: NEEDS_INPUT,
   },
   brand: {
-    colorsStatus: "derived from logo/hero assets",
+    colorsStatus: "brand teal provided",
     logoStatus: "logo.jpg provided",
-    /** Navy + gold pulled from the provided brand hero. */
+    /** Deep teal brand accent (replaces earlier gold pulled from flyer art). */
     colors: {
       background: "#f6f5f2",
       foreground: "#1c1a24",
       muted: "#5a564f",
-      accent: "#b08a3c",
-      accentHover: "#946f2c",
-      accentSoft: "rgba(176, 138, 60, 0.16)",
+      accent: "#215048",
+      accentHover: "#1a4039",
+      accentSoft: "rgba(33, 80, 72, 0.14)",
       surface: "#ffffff",
     },
   },

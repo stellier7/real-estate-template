@@ -15,6 +15,23 @@ type HomeHeroProps = {
   stats: { total: number; forSale: number; forRent: number };
 };
 
+const HERO_ACCENT_WORDS = new Set(["seguridad", "confianza"]);
+
+function renderHeroHeadline(headline: string) {
+  return headline.split(/(\bseguridad\b|\bconfianza\b)/gi).map((part, index) => {
+    if (!part) return null;
+    if (HERO_ACCENT_WORDS.has(part.toLowerCase())) {
+      const label = part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+      return (
+        <span key={`${part}-${index}`} className="text-accent">
+          {label}
+        </span>
+      );
+    }
+    return <span key={`${part}-${index}`}>{part}</span>;
+  });
+}
+
 function HeroCopy({
   stats,
   align = "start",
@@ -40,8 +57,8 @@ function HeroCopy({
   return (
     <div className={`flex w-full max-w-xl flex-col ${alignClass}`}>
       <RevealOnScroll>
-        <h1 className="type-display-hero hero-copy-title max-w-xl text-pretty text-accent">
-          {headline}
+        <h1 className="type-display-hero hero-copy-title max-w-xl text-pretty text-foreground">
+          {renderHeroHeadline(headline)}
         </h1>
         <p className="type-meta hero-copy-meta mt-4 max-w-lg text-pretty text-foreground/90">
           <span className="block font-medium text-foreground sm:inline">
