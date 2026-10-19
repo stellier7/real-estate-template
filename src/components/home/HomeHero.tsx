@@ -40,10 +40,10 @@ function HeroCopy({
   return (
     <div className={`flex w-full max-w-xl flex-col ${alignClass}`}>
       <RevealOnScroll>
-        <h1 className="type-display-hero max-w-xl text-pretty text-accent">
+        <h1 className="type-display-hero hero-copy-title max-w-xl text-pretty text-accent">
           {headline}
         </h1>
-        <p className="type-meta mt-4 max-w-lg text-pretty text-foreground/85">
+        <p className="type-meta hero-copy-meta mt-4 max-w-lg text-pretty text-foreground/90">
           <span className="block font-medium text-foreground sm:inline">
             {supporting}
           </span>
@@ -158,7 +158,7 @@ function PortraitHero({
   stats: HomeHeroProps["stats"];
 }) {
   return (
-    <section className="hero-shell hero-shell-min relative overflow-hidden bg-[#d9d2c4]">
+    <section className="hero-shell hero-shell-min relative overflow-hidden bg-[#cfc6b4]">
       <div className="absolute inset-0">
         <Image
           src={backgroundImage}
@@ -166,12 +166,11 @@ function PortraitHero({
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[60%_40%] saturate-[1.05]"
+          className="object-cover object-[72%_42%] saturate-[1.08]"
         />
-        {/* Soft left so portrait blends; strong right panel for readable copy */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-background/35 to-background/88" />
-        <div className="absolute inset-y-0 right-0 w-full bg-gradient-to-l from-background via-background/80 to-transparent lg:w-[58%]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-background/25" />
+        {/* Keep cathedral visible behind copy; only a light wash for contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/55 via-transparent to-black/10" />
       </div>
 
       <Container className="relative grid min-h-[inherit] grid-cols-1 items-end gap-0 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-stretch lg:gap-6">
@@ -188,7 +187,7 @@ function PortraitHero({
         </div>
 
         <div className="relative z-10 flex items-end pb-10 pt-4 sm:pb-14 lg:items-center lg:py-24">
-          <div className="hero-copy-panel w-full max-w-xl rounded-[var(--radius-lg)] border border-line/60 bg-background/78 p-5 shadow-[var(--shadow-soft)] backdrop-blur-md sm:p-7 lg:bg-background/72">
+          <div className="hero-copy-panel w-full max-w-xl rounded-[var(--radius-lg)] border border-white/35 bg-background/25 p-5 shadow-[0_18px_40px_-24px_rgba(28,26,36,0.45)] backdrop-blur-[2px] sm:p-7">
             <HeroCopy stats={stats} align="start" />
           </div>
         </div>

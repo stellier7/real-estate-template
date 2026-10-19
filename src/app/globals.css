@@ -222,6 +222,21 @@ body::before {
   }
 }
 
+.hero-copy-panel .stat-pill {
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+  border-color: color-mix(in srgb, var(--line) 70%, transparent);
+  backdrop-filter: blur(2px);
+}
+
+.hero-copy-title {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 28px rgba(28, 26, 36, 0.18);
+}
+
+.hero-copy-meta,
+.hero-copy-panel .prose-editorial {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
 .hero-panel {
   display: flex;
   min-height: inherit;

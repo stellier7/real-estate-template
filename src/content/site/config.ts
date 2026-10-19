@@ -15,7 +15,7 @@ export const siteConfig = {
   heroLayout: "portrait" as const,
   heroImage: `${imageFolder}/comayagua-plaza.jpg`,
   heroPortrait: `${imageFolder}/hero-portrait.jpg`,
-  heroBackground: `${imageFolder}/hero-background.jpg`,
+  heroBackground: `${imageFolder}/comayagua-plaza.jpg`,
   tagline: "Consulte a los expertos",
   description:
     "Venta de terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz. Asesoría directa, local y disponible las 24 horas.",
