@@ -57,7 +57,7 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
   return (
     <>
       <Section className="pb-0">
-        <RevealOnScroll>
+        <RevealOnScroll variant="up">
           <h1 className="font-display text-5xl sm:text-6xl">Propiedades</h1>
           <p className="prose-editorial mt-6 max-w-2xl">
             {stats.total} inmuebles en venta y alquiler en Tegucigalpa y Honduras — {stats.forSale}{" "}
@@ -98,11 +98,16 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
           <>
             <div className="catalog-results grid gap-8 lg:gap-10">
               {pagination.items.map((property, index) => (
-                <PropertyCard
+                <RevealOnScroll
                   key={property.id}
-                  property={property}
-                  priority={pagination.currentPage === 1 && index < 2}
-                />
+                  variant={index % 2 === 0 ? "left" : "right"}
+                  delayMs={Math.min(index, 6) * 70}
+                >
+                  <PropertyCard
+                    property={property}
+                    priority={pagination.currentPage === 1 && index < 2}
+                  />
+                </RevealOnScroll>
               ))}
             </div>
             <DirectoryPagination

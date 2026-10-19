@@ -176,15 +176,66 @@ body::before {
 
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(24px);
   transition:
     opacity var(--motion-duration) cubic-bezier(0.22, 1, 0.36, 1),
     transform var(--motion-duration) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.reveal-on-scroll.reveal-up {
+  transform: translateY(28px);
+}
+
+.reveal-on-scroll.reveal-left {
+  transform: translateX(-32px);
+}
+
+.reveal-on-scroll.reveal-right {
+  transform: translateX(32px);
+}
+
+.reveal-on-scroll.reveal-scale {
+  transform: translateY(16px) scale(0.96);
+}
+
 .reveal-on-scroll.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+}
+
+@keyframes hero-enter-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-enter-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-enter-copy {
+  animation: hero-enter-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+
+/* Opacity-only so scroll parallax can own transform on the same node */
+.hero-enter-sticker {
+  animation: hero-enter-fade 1s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter-copy,
+  .hero-enter-sticker {
+    animation: none;
+  }
 }
 
 .hero-shell {

@@ -2,12 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
+import { ParallaxLayer } from "@/components/motion/ParallaxLayer";
 import { ParallaxMedia } from "@/components/motion/ParallaxMedia";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/content/site/config";
 import { isNeedsInput } from "@/content/site/needs-input";
+import { useParallaxOffset } from "@/lib/motion/useParallaxOffset";
 import { buildWhatsAppUrl, hasWhatsApp } from "@/lib/contact/whatsapp";
 
 type HomeHeroProps = {
@@ -174,25 +177,46 @@ function PortraitHero({
   portraitImage: string;
   stats: HomeHeroProps["stats"];
 }) {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const { offset: stickerOffset, reduceMotion } = useParallaxOffset(sectionRef, {
+    amplitude: -36,
+  });
+
   return (
-    <section className="hero-shell hero-shell-min hero-portrait-shell relative overflow-hidden bg-[#9eb6d4]">
+    <section
+      ref={sectionRef}
+      className="hero-shell hero-shell-min hero-portrait-shell relative overflow-hidden bg-[#9eb6d4]"
+    >
       <div className="absolute inset-0 overflow-hidden">
-        {/* Height-fit; shifted right so the facade clears the sticker */}
-        <Image
-          src={backgroundImage}
-          alt="Catedral de la Inmaculada Concepción, Comayagua"
-          width={2400}
-          height={1350}
-          priority
-          sizes="100vw"
-          className="hero-cathedral-bg pointer-events-none select-none"
-        />
+        <ParallaxLayer
+          rootRef={sectionRef}
+          amplitude={64}
+          scale={1.1}
+          className="absolute inset-[-8%]"
+        >
+          <Image
+            src={backgroundImage}
+            alt="Catedral de la Inmaculada Concepción, Comayagua"
+            width={2400}
+            height={1350}
+            priority
+            sizes="100vw"
+            className="hero-cathedral-bg pointer-events-none select-none"
+          />
+        </ParallaxLayer>
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-background/10" />
         <div className="absolute inset-0 bg-gradient-to-t from-background/55 via-transparent to-transparent" />
       </div>
 
       <Container className="hero-portrait-grid relative min-h-[inherit]">
-        <div className="hero-portrait-frame">
+        <div
+          className="hero-portrait-frame hero-enter-sticker will-change-transform motion-reduce:transform-none"
+          style={{
+            transform: reduceMotion
+              ? undefined
+              : `translate3d(0, ${stickerOffset}px, 0)`,
+          }}
+        >
           <Image
             src={portraitImage}
             alt={siteConfig.name}
@@ -204,7 +228,7 @@ function PortraitHero({
           />
         </div>
 
-        <div className="hero-portrait-copy">
+        <div className="hero-portrait-copy hero-enter-copy">
           <div className="hero-copy-panel w-full max-w-xl rounded-[var(--radius-lg)] border border-white/35 bg-background/25 p-5 shadow-[0_18px_40px_-24px_rgba(28,26,36,0.45)] backdrop-blur-[2px] sm:p-7">
             <HeroCopy stats={stats} align="start" />
           </div>
