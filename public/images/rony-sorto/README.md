@@ -6,7 +6,8 @@
 | `logo-dark.jpg` | Dark sections | Same as logo for now |
 | `hero.jpg` | Original marketing flyer | Provided |
 | `hero-portrait.jpg` | Older cropped flyer portrait | Archive |
-| `hero-sticker.png` | Transparent agent sticker for layered hero | Provided (keyed from JPEG) |
+| `hero-sticker.png` | Earlier sticker key (white stroke) | Archive |
+| `hero-sticker-soft.png` | Soft-edge agent sticker for layered hero | Provided (stroke removed) |
 | `comayagua-plaza.jpg` | Earlier plaza composite | Archive |
 | `comayagua-cathedral.jpg` | Hero backdrop — cathedral, right-aligned | Provided |
 | `hero-background.jpg` | Older plaza crop | Archive |
