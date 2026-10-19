@@ -14,7 +14,7 @@ export const siteConfig = {
   brandShort: "Rony Sorto",
   heroLayout: "portrait" as const,
   heroImage: `${imageFolder}/comayagua-cathedral.jpg`,
-  heroPortrait: `${imageFolder}/hero-portrait.jpg`,
+  heroPortrait: `${imageFolder}/hero-sticker.png`,
   heroBackground: `${imageFolder}/comayagua-cathedral.jpg`,
   tagline: "Consulte a los expertos",
   description:

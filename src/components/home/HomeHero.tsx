@@ -176,15 +176,15 @@ function PortraitHero({
       </div>
 
       <Container className="relative grid min-h-[inherit] grid-cols-1 items-end gap-0 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-stretch lg:gap-6">
-        <div className="hero-portrait-frame relative mx-auto w-full max-w-md self-end lg:mx-0 lg:max-w-none">
+        <div className="hero-portrait-frame relative mx-auto flex w-full max-w-lg items-end justify-center self-end lg:mx-0 lg:max-w-none">
           <Image
             src={portraitImage}
             alt={siteConfig.name}
-            width={484}
-            height={1052}
+            width={745}
+            height={970}
             priority
-            sizes="(max-width: 1024px) 80vw, 42vw"
-            className="hero-portrait-image relative z-10 mx-auto h-auto w-full max-h-[58vh] object-contain object-bottom drop-shadow-[0_28px_50px_rgba(28,26,36,0.4)] sm:max-h-[64vh] lg:absolute lg:inset-x-0 lg:bottom-0 lg:h-full lg:max-h-none lg:object-cover lg:object-[center_12%]"
+            sizes="(max-width: 1024px) 85vw, 44vw"
+            className="hero-portrait-image relative z-10 mx-auto h-auto w-full max-h-[62vh] object-contain object-bottom drop-shadow-[0_22px_40px_rgba(28,26,36,0.38)] sm:max-h-[70vh] lg:absolute lg:inset-x-0 lg:bottom-0 lg:h-[min(92%,52rem)] lg:max-h-none lg:w-auto lg:max-w-full lg:object-contain lg:object-bottom"
           />
         </div>
 
