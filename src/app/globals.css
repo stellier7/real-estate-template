@@ -413,7 +413,8 @@ body::before {
   }
 
   .hero-portrait-shell .hero-actions {
-    margin-top: 0;
+    /* Breath between stat cards and CTAs */
+    margin-top: 1.35rem;
   }
 
   .hero-portrait-shell .hero-cta-btn {
