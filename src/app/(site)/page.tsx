@@ -1,4 +1,5 @@
 import { HomeHero } from "@/components/home/HomeHero";
+import { MarketsStrip } from "@/components/home/MarketsStrip";
 import { PropertyMarquee } from "@/components/home/PropertyMarquee";
 import { PropertyCard } from "@/components/directory/PropertyCard";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
@@ -50,8 +51,6 @@ export default async function HomePage() {
   const aboutStory = isNeedsInput(siteConfig.about.story)
     ? siteConfig.homepage.pendingLabel
     : siteConfig.about.story;
-  const marketsLine =
-    siteConfig.markets.length > 0 ? siteConfig.markets.join(" · ") : null;
 
   return (
     <>
@@ -69,9 +68,6 @@ export default async function HomePage() {
           </RevealOnScroll>
           <RevealOnScroll variant="right" delayMs={120}>
             <p className="prose-editorial">{aboutStory}</p>
-            {marketsLine ? (
-              <p className="type-meta mt-5 text-muted">{marketsLine}</p>
-            ) : null}
           </RevealOnScroll>
         </div>
       </Section>
@@ -134,6 +130,12 @@ export default async function HomePage() {
           <RevealOnScroll variant="scale" delayMs={100}>
             <PropertyMarquee items={marqueeItems} />
           </RevealOnScroll>
+        </Section>
+      ) : null}
+
+      {siteConfig.markets.length > 0 ? (
+        <Section>
+          <MarketsStrip />
         </Section>
       ) : null}
     </>
