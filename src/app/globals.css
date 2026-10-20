@@ -379,8 +379,8 @@ body::before {
   .hero-portrait-image {
     position: absolute;
     inset-inline: 0;
-    /* Sit a hair below the hero floor so parallax lift doesn’t flash a sky gap */
-    bottom: -0.9rem;
+    /* Past the hero floor — soft PNG feather + mild parallax left a sky sliver */
+    bottom: -2rem;
     z-index: 10;
     width: auto;
     max-width: none;
