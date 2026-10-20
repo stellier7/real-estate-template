@@ -198,7 +198,7 @@ function PortraitHero({
         >
           <Image
             src={backgroundImage}
-            alt="Catedral de la Inmaculada Concepción, Comayagua"
+            alt="Vista aérea de Comayagua con la catedral y el valle"
             width={2400}
             height={1350}
             priority

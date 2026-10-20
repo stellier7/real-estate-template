@@ -274,18 +274,18 @@ body::before {
   width: 100%;
   max-width: none;
   object-fit: cover;
-  /* Mobile: keep carved facade in the open upper half above the copy strip */
-  object-position: 68% 28%;
+  /* Aerial: cathedral + plaza sit mid-right above the mobile copy strip */
+  object-position: 62% 42%;
 }
 
 @media (min-width: 1024px) {
   .hero-cathedral-bg {
-    /* Zoomed out cover — facade nudged further right of the sticker */
+    /* Keep the white cathedral clear of the left sticker column */
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 90% 38%;
+    object-position: 58% 48%;
     transform: none;
   }
 }
