@@ -37,7 +37,7 @@ export function SiteHeader() {
               alt=""
               width={176}
               height={176}
-              className="h-[92%] w-[92%] object-contain"
+              className="h-full w-full object-cover"
               priority
               sizes="44px"
             />
