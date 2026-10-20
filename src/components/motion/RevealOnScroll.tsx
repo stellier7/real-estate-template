@@ -2,11 +2,14 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
+export type RevealVariant = "up" | "left" | "right" | "scale";
+
 type RevealOnScrollProps = {
   children: ReactNode;
   className?: string;
   delayMs?: number;
-  as?: "div" | "section" | "article";
+  as?: "div" | "section" | "article" | "li";
+  variant?: RevealVariant;
 };
 
 export function RevealOnScroll({
@@ -14,6 +17,7 @@ export function RevealOnScroll({
   className = "",
   delayMs = 0,
   as = "div",
+  variant = "up",
 }: RevealOnScrollProps) {
   const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
@@ -22,6 +26,11 @@ export function RevealOnScroll({
     const node = ref.current;
     if (!node) return;
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -29,7 +38,7 @@ export function RevealOnScroll({
           observer.disconnect();
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.1 },
     );
 
     observer.observe(node);
@@ -40,7 +49,7 @@ export function RevealOnScroll({
   return (
     <Tag
       ref={ref as never}
-      className={`reveal-on-scroll ${visible ? "is-visible" : ""} ${className}`}
+      className={`reveal-on-scroll reveal-${variant} ${visible ? "is-visible" : ""} ${className}`}
       style={{ transitionDelay: visible ? `${delayMs}ms` : undefined }}
     >
       {children}
