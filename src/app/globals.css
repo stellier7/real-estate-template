@@ -176,15 +176,66 @@ body::before {
 
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(24px);
   transition:
     opacity var(--motion-duration) cubic-bezier(0.22, 1, 0.36, 1),
     transform var(--motion-duration) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.reveal-on-scroll.reveal-up {
+  transform: translateY(28px);
+}
+
+.reveal-on-scroll.reveal-left {
+  transform: translateX(-32px);
+}
+
+.reveal-on-scroll.reveal-right {
+  transform: translateX(32px);
+}
+
+.reveal-on-scroll.reveal-scale {
+  transform: translateY(16px) scale(0.96);
+}
+
 .reveal-on-scroll.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+}
+
+@keyframes hero-enter-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-enter-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-enter-copy {
+  animation: hero-enter-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+
+/* Opacity-only so scroll parallax can own transform on the same node */
+.hero-enter-sticker {
+  animation: hero-enter-fade 1s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter-copy,
+  .hero-enter-sticker {
+    animation: none;
+  }
 }
 
 .hero-shell {
@@ -212,13 +263,175 @@ body::before {
   }
 }
 
-.hero-portrait-frame {
-  min-height: min(58vh, 28rem);
+/*
+  Portrait hero background — cover crop biased to the ornate facade (right)
+  so the sticker sits over quieter sky/left mass, not the carved front.
+*/
+.hero-cathedral-bg {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  max-width: none;
+  object-fit: cover;
+  /* Mobile: facade a bit more right in the upper half above the copy strip */
+  object-position: 56% 28%;
 }
 
 @media (min-width: 1024px) {
+  .hero-cathedral-bg {
+    /* Two nudges right from the prior 90% crop */
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 78% 38%;
+    transform: none;
+  }
+}
+
+/*
+  Mobile: cathedral-led — no sticker (it fought the photo).
+  Copy is a lean bottom strip: headline + line + CTAs.
+  Desktop: sticker + copy two-column grid.
+*/
+.hero-portrait-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.hero-portrait-frame {
+  display: none;
+}
+
+.hero-portrait-copy {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  width: 100%;
+  max-width: 36rem;
+  align-items: flex-end;
+  /* Leave most of the first viewport to the cathedral */
+  padding-top: clamp(9rem, 44vh, 20rem);
+  padding-bottom: max(1.1rem, env(safe-area-inset-bottom, 0px));
+}
+
+.hero-portrait-shell .hero-copy-title {
+  font-size: clamp(1.65rem, 5.8vw + 0.35rem, 2.2rem);
+  line-height: 1.12;
+}
+
+.hero-portrait-shell .hero-copy-meta {
+  margin-top: 0.55rem;
+}
+
+.hero-portrait-shell .hero-actions {
+  margin-top: 0.75rem;
+}
+
+.hero-portrait-shell .hero-cta-btn {
+  padding-block: 0.7rem;
+}
+
+.hero-portrait-shell .hero-copy-panel .prose-editorial,
+.hero-portrait-shell .hero-stat-band,
+.hero-portrait-shell .hero-actions > .mt-2 {
+  display: none;
+}
+
+.hero-portrait-shell .hero-copy-panel {
+  padding: 0.9rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .hero-portrait-copy {
+    padding-bottom: max(1.75rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .hero-portrait-shell .hero-copy-panel {
+    padding: 1.15rem 1.35rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-portrait-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
   .hero-portrait-frame {
+    position: relative;
+    display: flex;
+    left: auto;
+    bottom: auto;
+    z-index: auto;
+    width: 100%;
+    max-width: none;
     min-height: 100%;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: auto;
+  }
+
+  .hero-portrait-image {
+    position: absolute;
+    inset-inline: 0;
+    /* Past the floor so soft edges don’t flash sky; shell overflow clips overhang */
+    bottom: -1.25rem;
+    z-index: 10;
+    width: auto;
+    max-width: none;
+    /* Clear the top edge so forehead/hair aren’t cropped */
+    height: min(84%, 46rem);
+    max-height: none;
+    margin-inline: auto;
+    object-fit: contain;
+    object-position: bottom;
+    /* Soft dark rim + depth — no white sticker stroke */
+    filter:
+      drop-shadow(0 0 0.6px rgba(18, 20, 28, 0.45))
+      drop-shadow(0 0 3px rgba(18, 20, 28, 0.18))
+      drop-shadow(0 20px 38px rgba(28, 26, 36, 0.3));
+  }
+
+  .hero-portrait-copy {
+    max-width: none;
+    align-items: center;
+    padding: 6rem 0;
+  }
+
+  .hero-portrait-shell .hero-copy-title {
+    font-size: var(--type-display-hero);
+    line-height: 1.05;
+  }
+
+  .hero-portrait-shell .hero-copy-meta {
+    margin-top: 1rem;
+  }
+
+  .hero-portrait-shell .hero-actions {
+    /* Breath between stat cards and CTAs */
+    margin-top: 1.35rem;
+  }
+
+  .hero-portrait-shell .hero-cta-btn {
+    padding-block: 0.875rem;
+  }
+
+  .hero-portrait-shell .hero-copy-panel {
+    padding: 1.75rem;
+  }
+
+  .hero-portrait-shell .hero-copy-panel .prose-editorial,
+  .hero-portrait-shell .hero-stat-band {
+    display: block;
+  }
+
+  .hero-portrait-shell .hero-actions > .mt-2 {
+    display: flex;
   }
 }
 

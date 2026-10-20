@@ -14,7 +14,7 @@ export const siteConfig = {
   brandShort: "Rony Sorto",
   heroLayout: "portrait" as const,
   heroImage: `${imageFolder}/comayagua-cathedral.jpg`,
-  heroPortrait: `${imageFolder}/hero-portrait.jpg`,
+  heroPortrait: `${imageFolder}/hero-sticker-soft.png`,
   heroBackground: `${imageFolder}/comayagua-cathedral.jpg`,
   tagline: "Consulte a los expertos",
   description:
@@ -61,7 +61,28 @@ export const siteConfig = {
     },
     { label: "X", href: "https://x.com/RonySortoBR" },
   ],
-  markets: ["Comayagua", "Palmerola", "Lago de Yojoa", "La Paz"],
+  markets: [
+    {
+      name: "Comayagua",
+      image: `${imageFolder}/markets/comayagua.jpg`,
+      alt: "Letras monumentales COMAYAGUA en la plaza",
+    },
+    {
+      name: "Palmerola",
+      image: `${imageFolder}/markets/palmerola.jpg`,
+      alt: "Señalética del Aeropuerto Internacional Palmerola",
+    },
+    {
+      name: "Lago de Yojoa",
+      image: `${imageFolder}/markets/lago-de-yojoa.jpg`,
+      alt: "Letras LAGO DE YOJOA frente al lago y las montañas",
+    },
+    {
+      name: "La Paz",
+      image: `${imageFolder}/markets/la-paz.jpg`,
+      alt: "Plaza y letras LA PAZ en el centro de La Paz",
+    },
+  ],
   about: {
     story:
       "Rony Sorto – Bienes Raíces Comayagua brinda asesoría directa a compradores y vendedores en Comayagua y zonas aledañas. Trabajamos con un enfoque práctico y local: terrenos (manzanas para uso agrícola, ganadero u hotelero) y casas en sectores como Quinta Valladolid, Barrio La Sabana y La Jaguita. Atención por llamada o WhatsApp las 24 horas.",
@@ -83,7 +104,7 @@ export const siteConfig = {
     },
   ],
   homepage: {
-    heroHeadline: "Construya su futuro con seguridad y confianza",
+    heroHeadline: "Construya su futuro con Seguridad y Confianza",
     heroSupporting: "Rony Sorto — Asesor inmobiliario",
     heroLead:
       "Terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz. Atención directa las 24 horas.",
@@ -108,16 +129,16 @@ export const siteConfig = {
     privacyText: NEEDS_INPUT,
   },
   brand: {
-    colorsStatus: "derived from logo/hero assets",
+    colorsStatus: "brand teal provided",
     logoStatus: "logo.jpg provided",
-    /** Navy + gold pulled from the provided brand hero. */
+    /** Deep teal brand accent (replaces earlier gold pulled from flyer art). */
     colors: {
       background: "#f6f5f2",
       foreground: "#1c1a24",
       muted: "#5a564f",
-      accent: "#b08a3c",
-      accentHover: "#946f2c",
-      accentSoft: "rgba(176, 138, 60, 0.16)",
+      accent: "#215048",
+      accentHover: "#1a4039",
+      accentSoft: "rgba(33, 80, 72, 0.14)",
       surface: "#ffffff",
     },
   },

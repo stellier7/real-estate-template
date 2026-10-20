@@ -2,18 +2,38 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
+import { ParallaxLayer } from "@/components/motion/ParallaxLayer";
 import { ParallaxMedia } from "@/components/motion/ParallaxMedia";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/content/site/config";
 import { isNeedsInput } from "@/content/site/needs-input";
+import { useParallaxOffset } from "@/lib/motion/useParallaxOffset";
 import { buildWhatsAppUrl, hasWhatsApp } from "@/lib/contact/whatsapp";
 
 type HomeHeroProps = {
   heroImage: string;
   stats: { total: number; forSale: number; forRent: number };
 };
+
+const HERO_ACCENT_WORDS = new Set(["seguridad", "confianza"]);
+
+function renderHeroHeadline(headline: string) {
+  return headline.split(/(\bseguridad\b|\bconfianza\b)/gi).map((part, index) => {
+    if (!part) return null;
+    if (HERO_ACCENT_WORDS.has(part.toLowerCase())) {
+      const label = part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+      return (
+        <span key={`${part}-${index}`} className="text-accent">
+          {label}
+        </span>
+      );
+    }
+    return <span key={`${part}-${index}`}>{part}</span>;
+  });
+}
 
 function HeroCopy({
   stats,
@@ -40,8 +60,8 @@ function HeroCopy({
   return (
     <div className={`flex w-full max-w-xl flex-col ${alignClass}`}>
       <RevealOnScroll>
-        <h1 className="type-display-hero hero-copy-title max-w-xl text-pretty text-accent">
-          {headline}
+        <h1 className="type-display-hero hero-copy-title max-w-xl text-pretty text-foreground">
+          {renderHeroHeadline(headline)}
         </h1>
         <p className="type-meta hero-copy-meta mt-4 max-w-lg text-pretty text-foreground/90">
           <span className="block font-medium text-foreground sm:inline">
@@ -157,38 +177,59 @@ function PortraitHero({
   portraitImage: string;
   stats: HomeHeroProps["stats"];
 }) {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const { offset: stickerOffset, reduceMotion } = useParallaxOffset(sectionRef, {
+    /* Mild lift on scroll — stronger values left a sky gap under the jacket */
+    amplitude: -18,
+  });
+
   return (
-    <section className="hero-shell hero-shell-min relative overflow-hidden bg-[#9eb6d4]">
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Height-fit, right-aligned: full cathedral top-to-bottom, facade kept right */}
-        <Image
-          src={backgroundImage}
-          alt="Catedral de la Inmaculada Concepción, Comayagua"
-          width={2400}
-          height={1350}
-          priority
-          sizes="100vw"
-          className="pointer-events-none absolute inset-y-0 right-0 h-full w-auto max-w-none select-none"
-        />
-        {/* Soft wash only — cathedral stays visible behind copy */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-background/15" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" />
+    <section
+      ref={sectionRef}
+      className="hero-shell hero-shell-min hero-portrait-shell relative overflow-hidden bg-[#9eb6d4]"
+    >
+      <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
+        <ParallaxLayer
+          rootRef={sectionRef}
+          amplitude={64}
+          scale={1.1}
+          className="absolute inset-[-8%]"
+        >
+          <Image
+            src={backgroundImage}
+            alt="Catedral de la Inmaculada Concepción, Comayagua"
+            width={2400}
+            height={1350}
+            priority
+            sizes="100vw"
+            className="hero-cathedral-bg pointer-events-none select-none"
+          />
+        </ParallaxLayer>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-background/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/55 via-transparent to-transparent" />
       </div>
 
-      <Container className="relative grid min-h-[inherit] grid-cols-1 items-end gap-0 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-stretch lg:gap-6">
-        <div className="hero-portrait-frame relative mx-auto w-full max-w-md self-end lg:mx-0 lg:max-w-none">
+      <Container className="hero-portrait-grid relative min-h-[inherit]">
+        <div
+          className="hero-portrait-frame hero-enter-sticker will-change-transform motion-reduce:transform-none"
+          style={{
+            transform: reduceMotion
+              ? undefined
+              : `translate3d(0, ${stickerOffset}px, 0)`,
+          }}
+        >
           <Image
             src={portraitImage}
             alt={siteConfig.name}
-            width={484}
-            height={1052}
+            width={745}
+            height={970}
             priority
-            sizes="(max-width: 1024px) 80vw, 42vw"
-            className="hero-portrait-image relative z-10 mx-auto h-auto w-full max-h-[58vh] object-contain object-bottom drop-shadow-[0_28px_50px_rgba(28,26,36,0.4)] sm:max-h-[64vh] lg:absolute lg:inset-x-0 lg:bottom-0 lg:h-full lg:max-h-none lg:object-cover lg:object-[center_12%]"
+            sizes="(max-width: 1024px) 45vw, 40vw"
+            className="hero-portrait-image"
           />
         </div>
 
-        <div className="relative z-10 flex items-end pb-10 pt-4 sm:pb-14 lg:items-center lg:py-24">
+        <div className="hero-portrait-copy hero-enter-copy">
           <div className="hero-copy-panel w-full max-w-xl rounded-[var(--radius-lg)] border border-white/35 bg-background/25 p-5 shadow-[0_18px_40px_-24px_rgba(28,26,36,0.45)] backdrop-blur-[2px] sm:p-7">
             <HeroCopy stats={stats} align="start" />
           </div>
