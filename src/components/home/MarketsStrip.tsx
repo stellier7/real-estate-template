@@ -31,8 +31,8 @@ export function MarketsStrip({
             variant="up"
             delayMs={index * 90}
           >
-            <figure className="group relative border border-accent/30 bg-surface">
-              <div className="relative aspect-[16/10] overflow-hidden">
+            <figure className="group relative overflow-hidden rounded-[var(--radius-lg)] border border-accent/30 bg-surface">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-[inherit]">
                 <Image
                   src={market.image}
                   alt={market.alt}
