@@ -186,9 +186,10 @@ function PortraitHero({
   return (
     <section
       ref={sectionRef}
-      className="hero-shell hero-shell-min hero-portrait-shell relative overflow-hidden bg-[#9eb6d4]"
+      className="hero-shell hero-shell-min hero-portrait-shell relative"
     >
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Clip cathedral to the rounded shell; sticker can hang past the seam */}
+      <div className="absolute inset-0 overflow-hidden rounded-[inherit] bg-[#9eb6d4]">
         <ParallaxLayer
           rootRef={sectionRef}
           amplitude={64}

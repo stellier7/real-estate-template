@@ -379,8 +379,8 @@ body::before {
   .hero-portrait-image {
     position: absolute;
     inset-inline: 0;
-    /* Past the hero floor — soft PNG feather + mild parallax left a sky sliver */
-    bottom: -2rem;
+    /* Hang slightly past the rounded seam so scroll doesn’t flash a gap */
+    bottom: -1.15rem;
     z-index: 10;
     width: auto;
     max-width: none;
