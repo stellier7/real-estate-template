@@ -93,11 +93,11 @@ export function SiteFooter() {
       </Container>
 
       <Container className="border-t border-line py-6">
-        <div className="flex flex-col gap-2 text-center sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:text-left">
-          <p className="type-meta">
-            © {year} {siteConfig.brandShort}. Todos los derechos reservados.
+        <div className="grid gap-2 text-center sm:grid-cols-3 sm:items-center sm:gap-4">
+          <p className="type-meta sm:text-left">
+            © {year} {siteConfig.brandShort}
           </p>
-          <p className="type-meta">
+          <p className="type-meta sm:text-center">
             Diseñado por{" "}
             <a
               href="https://www.iagodigital.com/"
@@ -107,6 +107,10 @@ export function SiteFooter() {
             >
               iAGO Digital
             </a>
+            .
+          </p>
+          <p className="type-meta sm:text-right">
+            Todos los derechos reservados
           </p>
         </div>
       </Container>
