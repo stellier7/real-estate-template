@@ -179,7 +179,8 @@ function PortraitHero({
 }) {
   const sectionRef = useRef<HTMLElement | null>(null);
   const { offset: stickerOffset, reduceMotion } = useParallaxOffset(sectionRef, {
-    amplitude: -36,
+    /* Mild lift on scroll — stronger values left a sky gap under the jacket */
+    amplitude: -18,
   });
 
   return (
