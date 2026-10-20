@@ -13,9 +13,9 @@ export const siteConfig = {
   /** Short label in the header mark */
   brandShort: "Rony Sorto",
   heroLayout: "portrait" as const,
-  heroImage: `${imageFolder}/comayagua-aerial.jpg`,
+  heroImage: `${imageFolder}/comayagua-cathedral.jpg`,
   heroPortrait: `${imageFolder}/hero-sticker-soft.png`,
-  heroBackground: `${imageFolder}/comayagua-aerial.jpg`,
+  heroBackground: `${imageFolder}/comayagua-cathedral.jpg`,
   tagline: "Consulte a los expertos",
   description:
     "Venta de terrenos y casas en Comayagua, Palmerola, Lago de Yojoa y La Paz. Asesoría directa, local y disponible las 24 horas.",

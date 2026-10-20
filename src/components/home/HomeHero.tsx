@@ -186,10 +186,9 @@ function PortraitHero({
   return (
     <section
       ref={sectionRef}
-      className="hero-shell hero-shell-min hero-portrait-shell relative"
+      className="hero-shell hero-shell-min hero-portrait-shell relative overflow-hidden bg-[#9eb6d4]"
     >
-      {/* Clip cathedral to the rounded shell; sticker can hang past the seam */}
-      <div className="absolute inset-0 overflow-hidden rounded-[inherit] bg-[#9eb6d4]">
+      <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
         <ParallaxLayer
           rootRef={sectionRef}
           amplitude={64}
@@ -198,7 +197,7 @@ function PortraitHero({
         >
           <Image
             src={backgroundImage}
-            alt="Vista aérea de Comayagua con la catedral y el valle"
+            alt="Catedral de la Inmaculada Concepción, Comayagua"
             width={2400}
             height={1350}
             priority
