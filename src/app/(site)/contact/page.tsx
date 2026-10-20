@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { WhatsAppContact } from "@/components/contact/WhatsAppContact";
+import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { Section } from "@/components/layout/Section";
 import { siteConfig } from "@/content/site/config";
 import { isNeedsInput } from "@/content/site/needs-input";
@@ -18,7 +19,7 @@ export default function ContactPage() {
   return (
     <Section>
       <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
-        <div>
+        <RevealOnScroll variant="left">
           <h1 className="font-display text-5xl sm:text-6xl">Contacto</h1>
           <p className="prose-editorial mt-6 max-w-xl">
             {hasWhatsApp()
@@ -109,8 +110,10 @@ export default function ContactPage() {
               </div>
             ) : null}
           </div>
-        </div>
-        <WhatsAppContact heading={siteConfig.homepage.primaryCtaLabel} />
+        </RevealOnScroll>
+        <RevealOnScroll variant="right" delayMs={120}>
+          <WhatsAppContact heading={siteConfig.homepage.primaryCtaLabel} />
+        </RevealOnScroll>
       </div>
     </Section>
   );
